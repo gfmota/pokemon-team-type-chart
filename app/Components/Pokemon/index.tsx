@@ -1,26 +1,32 @@
 import Image from "next/image";
 import React from "react";
-import { PokemonI } from "../../types";
 
-const Types = ({types}: any) => {
-  console.log({types})
-  return (
-    <div style={{backgroundColor: 'black'}}>
-      <Image src={`/icons/${types[0]}.svg`} width={16} height={16} alt={types[0]}/>
-      {types[1] && <Image src={`/icons/${types[1]}.svg`} width={16} height={16} alt={types[1]}/>}
-    </div>
-  )
+import { TypesBackgroundColors } from "../../constants";
+import { PokemonI } from "../../types";
+import { PokemonLayout, TypeLayout } from "./style";
+
+type TypeProps = {
+  id: string,
 }
+const Type = ({id}: TypeProps) =>  (
+  <TypeLayout backgroundColor={TypesBackgroundColors[id]} >
+    <Image src={`/icons/${id}.svg`} width={18} height={18} alt={id}/>
+  </TypeLayout>
+)
+
+const capitalize = (str: string) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`
 
 type PokemonProps = {
   pokemon: PokemonI,
 }
-const Pokemon = ({ pokemon }: PokemonProps) =>  (
-  <>
-    {pokemon.name}
-    <Types types={pokemon.types} />
-    <Image src={pokemon.sprite} width={120} height={120} alt="in game sprite" />
-  </>
+const Pokemon = ({ pokemon: {name, types, sprite} }: PokemonProps) =>  (
+  <PokemonLayout>
+    {capitalize(name)}
+    <div style={{display: 'flex', justifyContent: 'space-evenly', width: 'inherit'}}>
+      {types.map((type: string) => <Type id={type} key={type} />)}
+    </div>
+    <Image src={sprite} width={120} height={120} alt="in game sprite" />
+  </PokemonLayout>
 )
 
 export default Pokemon;
