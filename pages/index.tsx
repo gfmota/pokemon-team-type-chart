@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Key } from 'react'
 import Input from '../app/Components/Input'
 import Pokemon from '../app/Components/Pokemon'
 import { useTeamContext } from '../app/Context/TeamContext'
