@@ -1,5 +1,5 @@
 export interface PokemonI {
-    name: String,
-    types: String[],
-    sprite: String,
+    name: string,
+    types: string[],
+    sprite: string,
 }

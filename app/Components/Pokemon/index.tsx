@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { useTeamContext } from "../../Context/TeamContext";
+import { PokemonI } from "../../types";
 
 const Types = ({types}: any) => {
   console.log({types})
@@ -12,17 +12,15 @@ const Types = ({types}: any) => {
   )
 }
 
-const Pokemon = () => {
-  const { pokemon } = useTeamContext();
-  if (!pokemon) return null;
-
-  return (
-    <>
-      {pokemon.name}
-      <Types types={pokemon.types} />
-      <Image src={pokemon.sprite} width={120} height={120} alt="in game sprite" />
-    </>
-  )
+type PokemonProps = {
+  pokemon: PokemonI,
 }
+const Pokemon = ({ pokemon }: PokemonProps) =>  (
+  <>
+    {pokemon.name}
+    <Types types={pokemon.types} />
+    <Image src={pokemon.sprite} width={120} height={120} alt="in game sprite" />
+  </>
+)
 
 export default Pokemon;

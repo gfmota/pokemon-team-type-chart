@@ -1,13 +1,15 @@
-import React, { PropsWithChildren, useContext, useState } from "react";
+import React, { PropsWithChildren, useCallback, useContext, useState } from "react";
 import { PokemonI } from "../types";
 
 export const TeamContext = React.createContext<any>({});
 
 const TeamContextProvider = (props: PropsWithChildren) => {
-  const [pokemon, setPokemon] = useState<PokemonI|null>(null);
+  const [team, setTeam] = useState<PokemonI[]>([]);
+
+  const addPokemon = useCallback((pokemon: PokemonI) => setTeam((prevTeam) => [...prevTeam, pokemon]), [setTeam]);
 
   return (
-    <TeamContext.Provider value={{pokemon, setPokemon}}>
+    <TeamContext.Provider value={{team, addPokemon}}>
         {props.children}
     </TeamContext.Provider>
   )

@@ -1,9 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { Key } from 'react'
 import Input from '../app/Components/Input'
 import Pokemon from '../app/Components/Pokemon'
+import { useTeamContext } from '../app/Context/TeamContext'
+import { PokemonI } from '../app/types'
 
 const Home: NextPage = () => {
+  const {team} = useTeamContext();
+
   return (
     <div>
       <Head>
@@ -13,8 +18,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Input />
-
-      <Pokemon />
+      {team.map((pokemon: PokemonI) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
     </div>
   )
 }

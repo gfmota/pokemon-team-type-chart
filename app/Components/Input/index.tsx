@@ -20,7 +20,7 @@ const createPokemonFromJSON = (json: any): PokemonI => {
 const Input = () => {
   const [inputValue, setInputValue] = useState<String>('');
   const [error, setError] = useState<boolean>(false);
-  const { setPokemon } = useTeamContext();
+  const { addPokemon } = useTeamContext();
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,8 +28,7 @@ const Input = () => {
       const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${inputValue}`);
       const json = await response.json();
       const pokemon = createPokemonFromJSON(json);
-      console.log(pokemon);
-      setPokemon(pokemon);
+      addPokemon(pokemon);
       setError(false);
     }
     catch (err) {
