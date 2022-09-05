@@ -27,12 +27,20 @@ const getTypeRelations = async (types: string[]) => {
         typeRelations.x4.push(name);
         return;
       }
+      if (typeRelations.x05.includes(name)) {
+        removeItem(typeRelations.x05, name);
+        return;
+      }
       typeRelations.x2.push(name)
     });
     jsonST.damage_relations.half_damage_from.forEach(({name}: any) => {
       if (typeRelations.x05.includes(name)) {
         removeItem(typeRelations.x05, name);
         typeRelations.x025.push(name);
+        return;
+      }
+      if (typeRelations.x2.includes(name)) {
+        removeItem(typeRelations.x2, name);
         return;
       }
       typeRelations.x05.push(name)
