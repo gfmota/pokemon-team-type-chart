@@ -10,18 +10,21 @@ const getTypeRelations = async (types: string[]) => {
     x4: [],
     x2: [],
     x05: [],
-    x025: []
+    x025: [],
+    x0: [],
   };
 
   const response = await fetch(`${TYPE_REQUEST_URL}${types[0]}`);
   const json = await response.json();
   json.damage_relations.double_damage_from.forEach((type: any) => typeRelations.x2.push(type.name));
   json.damage_relations.half_damage_from.forEach((type: any) => typeRelations.x05.push(type.name));
+  json.damage_relations.no_damage_from.forEach((type: any) => typeRelations.x0.push(type.name));
 
   if (types[1]) {
     const responseST = await fetch(`${TYPE_REQUEST_URL}${types[1]}`);
     const jsonST = await responseST.json();
     jsonST.damage_relations.double_damage_from.forEach(({name}: any) => {
+      if (typeRelations.x0.includes(name)) return;
       if (typeRelations.x2.includes(name)) {
         removeItem(typeRelations.x2, name);
         typeRelations.x4.push(name);
@@ -34,6 +37,7 @@ const getTypeRelations = async (types: string[]) => {
       typeRelations.x2.push(name)
     });
     jsonST.damage_relations.half_damage_from.forEach(({name}: any) => {
+      if (typeRelations.x0.includes(name)) return;
       if (typeRelations.x05.includes(name)) {
         removeItem(typeRelations.x05, name);
         typeRelations.x025.push(name);
@@ -44,6 +48,16 @@ const getTypeRelations = async (types: string[]) => {
         return;
       }
       typeRelations.x05.push(name)
+    });
+    jsonST.damage_relations.no_damage_from.forEach(({name}: any) => {
+      if (typeRelations.x0.includes(name)) return;
+      if (typeRelations.x05.includes(name)) {
+        removeItem(typeRelations.x05, name);
+      }
+      if (typeRelations.x2.includes(name)) {
+        removeItem(typeRelations.x2, name);
+      }
+      typeRelations.x0.push(name)
     });
   }
 
