@@ -84,8 +84,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
 
 export const usePokemonInput = () => {
   const [inputValue, setInputValue] = useState<String>('');
-  const [error, setError] = useState<boolean>(false);
-  const { addPokemon } = useTeamContext();
+  const { addPokemon, setError } = useTeamContext();
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -94,15 +93,13 @@ export const usePokemonInput = () => {
       const json = await response.json();
       const pokemon = await createPokemonFromJSON(json);
       addPokemon(pokemon);
-      setError(false);
     }
     catch (err) {
-      setError(true);
+      setError(`${inputValue} not found`);
     }
   }
 
   return {
-    error,
     onSubmit,
     setInputValue,
   }
