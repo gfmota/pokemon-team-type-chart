@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { TypesBackgroundColors } from "../../constants";
-import { TypeLayout } from "../../style";
+import { TypeStyled } from "../../style";
 import { TypeEnum } from "../../types";
 
 type TypeProps = {
@@ -9,9 +9,9 @@ type TypeProps = {
 }
 
 const Type = ({id}: TypeProps) =>  (
-  <TypeLayout backgroundColor={TypesBackgroundColors[id]} >
+  <TypeStyled backgroundColor={TypesBackgroundColors[id]} >
     <Image src={`/icons/${id}.svg`} width={18} height={18} alt={id as any}/>
-  </TypeLayout>
+  </TypeStyled>
 );
 
 export default Type;

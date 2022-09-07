@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-type TypeLayoutIProps = {
+type TypeStyledIProps = {
   backgroundColor: string,
 }
 
-export const TypeLayout = styled.div<TypeLayoutIProps>`
+export const TypeStyled = styled.div<TypeStyledIProps>`
   background-color: ${props => props.backgroundColor};
   border-radius: 100%;
   width: 36px;
@@ -14,7 +14,7 @@ export const TypeLayout = styled.div<TypeLayoutIProps>`
   align-items: center;
 `
 
-export const PokemonLayout = styled.div`
+export const PokemonStyled = styled.div`
   border-radius: 100%;
   background-color: #807d7b;
   color: white;
