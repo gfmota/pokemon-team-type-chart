@@ -10,19 +10,27 @@ const Home: NextPage = () => {
   const {team} = useTeamContext();
 
   return (
-    <div>
+    <>
       <Head>
         <title>Pokemon Team Typechart</title>
         <meta name="description" content="Know your team weakness" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Input />
-      {team.map((pokemon: PokemonI) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
-
-      <TypeRelations />
-    </div>
-  )
+      <div >
+        <Input />
+        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gridTemplateRows: '1fr 1fr 1fr',
+          }}>
+            {team.map((pokemon: PokemonI) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
+          </div>
+          <TypeRelations />
+        </div>
+      </div>
+    </>
+  );
 }
 
 export default Home
