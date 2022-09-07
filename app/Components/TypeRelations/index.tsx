@@ -3,6 +3,7 @@ import { useTypeRelations } from "./hooks";
 
 const TypeRelations = () => {
   const { typeRelations, renderTypesList } = useTypeRelations();
+  if (typeRelations === null) return null;
 
   return (
     <div style={{display: 'flex', gap: 20}} >
