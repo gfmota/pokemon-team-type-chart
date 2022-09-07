@@ -29,3 +29,11 @@ export const PokemonLayout = styled.div`
   justify-items: space-between;
   align-items: center;
 `
+
+export const InputStyled = styled.input`
+  width: 30%;
+  min-width: 20em;
+  padding: 12px 20px;
+  margin: 8px 4px;
+  box-sizing: border-box;
+`
