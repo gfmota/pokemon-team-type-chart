@@ -19,13 +19,13 @@ export enum TypeEnum {
 	fairy,
 }
 export interface PokemonI {
-    name: string,
-    types: TypeEnum[],
-    sprite: string,
-    typeRelations: {
-        x4: TypeEnum[],
-        x2: TypeEnum[],
-        x05: TypeEnum[],
-        x025: TypeEnum[]
-    },
+  name: string,
+  types: TypeEnum[],
+  sprite: string,
+  typeRelations: {
+    x4: TypeEnum[],
+    x2: TypeEnum[],
+    x05: TypeEnum[],
+    x025: TypeEnum[]
+  },
 };

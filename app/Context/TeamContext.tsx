@@ -6,10 +6,15 @@ export const TeamContext = React.createContext<any>({});
 const TeamContextProvider = (props: PropsWithChildren) => {
   const [team, setTeam] = useState<PokemonI[]>([]);
 
-  const addPokemon = useCallback((pokemon: PokemonI) => setTeam((prevTeam) => [...prevTeam, pokemon]), [setTeam]);
+  const addPokemon = useCallback(
+    (pokemon: PokemonI) => setTeam((prevTeam) => [...prevTeam, {...pokemon, id: prevTeam.length}]),
+  [setTeam]);
+  const removePokemon = useCallback(
+    (name: string) => setTeam((prevTeam) => prevTeam.filter(pkmn => pkmn.name !== name)),
+  [setTeam])
 
   return (
-    <TeamContext.Provider value={{team, addPokemon}}>
+    <TeamContext.Provider value={{team, addPokemon, removePokemon}}>
         {props.children}
     </TeamContext.Provider>
   )
