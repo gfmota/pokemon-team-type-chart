@@ -89,7 +89,7 @@ export const usePokemonInput = () => {
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${POKEMON_REQUEST_URL}${inputValue}`);
+      const response = await fetch(`${POKEMON_REQUEST_URL}${inputValue.toLowerCase()}`);
       const json = await response.json();
       const pokemon = await createPokemonFromJSON(json);
       addPokemon(pokemon);
