@@ -97,5 +97,7 @@ export const TypeRelationsStyled = styled.div`
     width: 100%;
     background-color: #807d7b;
     border-top: black 3px solid;
+    max-height: 50vh;
+    overflow:auto;
   }
 `
