@@ -3,6 +3,8 @@ import { MOBILE_MAX_WIDTH, TABLET_MAX_WIDTH } from './constants'
 
 type TypeStyledIProps = {
   backgroundColor: string,
+  selected: boolean,
+  grayscale: boolean,
 }
 
 export const TypeStyled = styled.div<TypeStyledIProps>`
@@ -13,9 +15,23 @@ export const TypeStyled = styled.div<TypeStyledIProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 2px 0;
+
+  ${({grayscale}) => grayscale && `
+    filter: grayscale(1);
+  `}
+
+  ${({selected}) => selected && `
+    box-shadow: 0px 0px 10px 5px #ffffff;
+  `}
 `
 
-export const PokemonStyled = styled.div`
+type PokemonStyledIProps = {
+  grayscale: boolean,
+  glow: boolean,
+}
+
+export const PokemonStyled = styled.div<PokemonStyledIProps>`
   border-radius: 100%;
   background-color: #807d7b;
   color: white;
@@ -28,6 +44,14 @@ export const PokemonStyled = styled.div`
   flex-direction: column;
   justify-items: space-between;
   align-items: center;
+
+  ${({grayscale}) => grayscale && `
+    filter: grayscale(1);
+  `}
+
+  ${({glow}) => glow && `
+    box-shadow: 0px 0px 30px 5px #ffffff;
+  `}
 `
 
 export const InputStyled = styled.input`

@@ -12,12 +12,17 @@ type PokemonProps = {
   pokemon: PokemonI,
 }
 const Pokemon = ({ pokemon: {name, types, sprite} }: PokemonProps) =>  {
-  const {removePokemon} = useTeamContext();
+  const { removePokemon, select, diselect, selected } = useTeamContext();
 
   return (
-    <PokemonStyled>
+    <PokemonStyled
+      onMouseEnter={() => select(name)}
+      onMouseLeave={diselect}
+      grayscale={selected && selected !== name}
+      glow={selected === name}
+    >
       <div>{capitalize(name)}</div>
-      <div style={{display: 'flex', justifyContent: 'space-evenly', width: 'inherit'}}>
+      <div style={{display: 'flex', justifyContent: 'space-evenly', width: '100%'}}>
         {types.map((type: TypeEnum) => <Type id={type} key={type} />)}
       </div>
       <Image src={sprite} width={120} height={120} alt="in game sprite" />

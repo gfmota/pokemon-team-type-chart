@@ -4,7 +4,7 @@ import { PokemonI } from "../../types";
 import Type from "../Type";
 
 export const useTypeRelations = () => {
-  const { team } = useTeamContext();
+  const { team, selected } = useTeamContext();
   const [typeRelations, setTypeRelations] = useState<any>(null);
 
   useEffect(() => {
@@ -21,20 +21,22 @@ export const useTypeRelations = () => {
     team.forEach((pokemon: PokemonI) => Object.entries(pokemon.typeRelations).forEach(([key, value]: any) => {
       value.forEach(((type: string) => {
         if (relations[key].find((relation: any) => relation.type === type)) {
-          relations[key].find((relation: any) => relation.type === type).counter += 1;
+          const relation = relations[key].find((relation: any) => relation.type === type)
+          relation.counter += 1;
+          if (pokemon.name === selected) relation.isSelected = true;
           return;
         }
-        relations[key].push({type, counter: 1});
+        relations[key].push({type, counter: 1, isSelected: pokemon.name === selected});
       }))
     }));
 
     setTypeRelations(relations);
-  }, [team]);
+  }, [team, selected]);
 
   const renderTypesList = (type: any[]) => type.map(
-    ({type, counter}: any) => (
+    ({type, counter, isSelected}: any) => (
       <div key={type} style={{display:'flex', alignItems: 'flex-end'}}>
-        <Type id={type} />
+        <Type id={type} selected={isSelected} grayscale={!isSelected && selected!==null} />
         <div style={{
           borderRadius: '100%',
           border: 'black 2px solid',
