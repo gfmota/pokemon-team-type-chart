@@ -7,8 +7,8 @@ type TypeStyledIProps = {
 export const TypeStyled = styled.div<TypeStyledIProps>`
   background-color: ${props => props.backgroundColor};
   border-radius: 100%;
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,10 +19,9 @@ export const PokemonStyled = styled.div`
   background-color: #807d7b;
   color: white;
 
-  width: 192px;
-  height: 192px;
-  padding-top: 10px;
+  padding: 10px;
   margin: 10px;
+  gap: 5px;
 
   display: flex;
   flex-direction: column;

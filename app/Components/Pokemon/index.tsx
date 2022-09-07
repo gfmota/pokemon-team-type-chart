@@ -16,7 +16,7 @@ const Pokemon = ({ pokemon: {name, types, sprite} }: PokemonProps) =>  {
 
   return (
     <PokemonStyled>
-      {capitalize(name)}
+      <div>{capitalize(name)}</div>
       <div style={{display: 'flex', justifyContent: 'space-evenly', width: 'inherit'}}>
         {types.map((type: TypeEnum) => <Type id={type} key={type} />)}
       </div>

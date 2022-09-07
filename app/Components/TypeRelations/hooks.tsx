@@ -32,7 +32,17 @@ export const useTypeRelations = () => {
   }, [team]);
 
   const renderTypesList = (type: any[]) => type.map(
-    ({type, counter}: any) => <div key={type} style={{display:'flex'}}><Type id={type} /> {counter}</div>
+    ({type, counter}: any) => (
+      <div key={type} style={{display:'flex', alignItems: 'flex-end'}}>
+        <Type id={type} />
+        <div style={{
+          borderRadius: '100%',
+          border: 'black 2px solid',
+          padding: '0 5px',
+          fontWeight: 'bold',
+        }}>{counter}</div>
+      </div>
+    )
   );
 
   return {

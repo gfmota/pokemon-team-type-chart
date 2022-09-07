@@ -18,11 +18,12 @@ const Home: NextPage = () => {
       </Head>
       <div >
         <Input />
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', marginTop: 25}}>
           <div style={{
+            margin: '0 25px',
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gridTemplateRows: '1fr 1fr 1fr',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateRows: 'repeat(2, 1fr)',
           }}>
             {team.map((pokemon: PokemonI) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
           </div>
