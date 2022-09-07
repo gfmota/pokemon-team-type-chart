@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { MOBILE_MAX_WIDTH, TABLET_MAX_WIDTH } from './constants'
 
 type TypeStyledIProps = {
   backgroundColor: string,
@@ -20,7 +21,7 @@ export const PokemonStyled = styled.div`
   color: white;
 
   padding: 10px;
-  margin: 10px;
+  margin: 0 0 10px 10px;
   gap: 5px;
 
   display: flex;
@@ -35,4 +36,42 @@ export const InputStyled = styled.input`
   padding: 12px 20px;
   margin: 8px 4px;
   box-sizing: border-box;
+`
+
+export const TeamStyled = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  @media (max-width: ${TABLET_MAX_WIDTH}px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+`
+
+export const MainStyled = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 25px;
+
+  @media (max-width: ${MOBILE_MAX_WIDTH}px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+`
+
+export const TypeRelationsStyled = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 25px;
+
+  @media (max-width: ${MOBILE_MAX_WIDTH}px) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    background-color: #807d7b;
+    border-top: black 3px solid;
+  }
 `

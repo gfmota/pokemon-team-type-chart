@@ -1,3 +1,4 @@
+import './global.css'
 import type { AppProps } from 'next/app'
 import TeamContextProvider from '../app/Context/TeamContext'
 

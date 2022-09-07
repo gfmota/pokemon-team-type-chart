@@ -4,6 +4,7 @@ import Input from '../app/Components/Input'
 import Pokemon from '../app/Components/Pokemon'
 import TypeRelations from '../app/Components/TypeRelations'
 import { useTeamContext } from '../app/Context/TeamContext'
+import { MainStyled, TeamStyled } from '../app/style'
 import { PokemonI } from '../app/types'
 
 const Home: NextPage = () => {
@@ -18,17 +19,12 @@ const Home: NextPage = () => {
       </Head>
       <div >
         <Input />
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', marginTop: 25}}>
-          <div style={{
-            margin: '0 25px',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gridTemplateRows: 'repeat(2, 1fr)',
-          }}>
+        <MainStyled>
+          <TeamStyled>
             {team.map((pokemon: PokemonI) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
-          </div>
+          </TeamStyled>
           <TypeRelations />
-        </div>
+        </MainStyled>
       </div>
     </>
   );

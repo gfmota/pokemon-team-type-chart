@@ -40,6 +40,8 @@ export const useTypeRelations = () => {
           border: 'black 2px solid',
           padding: '0 5px',
           fontWeight: 'bold',
+          backgroundColor: 'white',
+          color: 'black',
         }}>{counter}</div>
       </div>
     )
