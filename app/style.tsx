@@ -36,6 +36,7 @@ export const PokemonStyled = styled.div<PokemonStyledIProps>`
   background-color: #807d7b;
   color: white;
 
+  max-height: 250px;
   padding: 10px;
   margin: 0 0 10px 10px;
   gap: 5px;
