@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import { useTypeRelations } from "./hooks";
 
@@ -7,11 +8,11 @@ const TypeRelations = () => {
 
   return (
     <div style={{display: 'flex', gap: 20}} >
-      <div>4x {renderTypesList(typeRelations.x4)}</div>
-      <div>2x {renderTypesList(typeRelations.x2)}</div>
-      <div>0x {renderTypesList(typeRelations.x0)}</div>
-      <div>0.5x {renderTypesList(typeRelations.x05)}</div>
-      <div>0.25x {renderTypesList(typeRelations.x025)}</div>
+      <div><Image src='/icons/4x.svg' width={64} height={64} alt="it's super effective" /> {renderTypesList(typeRelations.x4)}</div>
+      <div><Image src='/icons/2x.svg' width={64} height={64} alt="it's super effective" /> {renderTypesList(typeRelations.x2)}</div>
+      <div><Image src='/icons/0x.svg' width={64} height={64} alt="it doesn't affect" /> {renderTypesList(typeRelations.x0)}</div>
+      <div><Image src='/icons/1:2x.svg' width={64} height={64} alt=" it's not very effective" /> {renderTypesList(typeRelations.x05)}</div>
+      <div><Image src='/icons/1:4x.svg' width={64} height={64} alt=" it's not very effective" /> {renderTypesList(typeRelations.x025)}</div>
     </div>
   );
 };
