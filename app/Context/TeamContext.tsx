@@ -10,8 +10,17 @@ const TeamContextProvider = (props: PropsWithChildren) => {
 
   const addPokemon = useCallback(
     (pokemon: PokemonI) => {
+      if (team.length >= 6) {
+        setError('Your team is already full');
+        return;
+      }
+      if (team.find(pkmn => pkmn.name === pokemon.name)) {
+        setError(`${pokemon.name} is already in your team`);
+        return;
+      }
+
       setTeam((prevTeam) => [...prevTeam, {...pokemon, id: prevTeam.length}])
-    }, [setTeam]);
+    }, [team, setTeam, setError]);
 
   const removePokemon = useCallback(
     (name: string) => setTeam((prevTeam) => prevTeam.filter(pkmn => pkmn.name !== name)),
