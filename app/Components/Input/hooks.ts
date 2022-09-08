@@ -64,6 +64,8 @@ const getTypeRelations = async (types: string[]) => {
   return typeRelations;
 }
 
+const capitalize = (str: string) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`
+
 const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   const {
     name,
@@ -75,7 +77,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   const typeRelations = await getTypeRelations(types);
 
   return {
-    name,
+    name: capitalize(name),
     types,
     sprite,
     typeRelations,
