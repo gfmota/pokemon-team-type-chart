@@ -17,12 +17,13 @@ export const TypeStyled = styled.div<TypeStyledIProps>`
   align-items: center;
   margin: 2px 0;
 
+  transition: .7s;
   ${({grayscale}) => grayscale && `
     filter: grayscale(1);
   `}
 
-  ${({selected}) => selected && `
-    box-shadow: 0px 0px 10px 5px #ffffff;
+  ${({selected, backgroundColor}) => selected && `
+    box-shadow: 0px 0px 12px 4px ${backgroundColor};
   `}
 `
 
@@ -46,12 +47,13 @@ export const PokemonStyled = styled.div<PokemonStyledIProps>`
   justify-items: space-between;
   align-items: center;
 
+  transition: .7s;
   ${({grayscale}) => grayscale && `
     filter: grayscale(1);
   `}
 
   ${({glow}) => glow && `
-    box-shadow: 0px 0px 30px 5px #ffffff;
+    box-shadow: 0px 0px 25px 0px #807d7b;
   `}
 `
 
