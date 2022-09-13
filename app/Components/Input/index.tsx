@@ -8,7 +8,7 @@ const Input = () => {
 
   return (
     <form onSubmit={onSubmit} style={{display: 'flex', justifyContent:'center'}}>
-      <InputStyled style={{}} onChange={(e) => setInputValue(e.target.value)} />
+      <InputStyled placeholder="Pokemon name or ID" onChange={(e) => setInputValue(e.target.value)} />
       <Image
         src='/icons/addPokemon.svg'
         width={42} height={42}
