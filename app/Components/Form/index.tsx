@@ -4,14 +4,12 @@ import { InputContainerStyled, InputStyled } from "../../style";
 import { usePokemonInput } from "./hooks";
 
 const Form = () => {
-  const { onChange, onSubmit, autoCompleteComponent, inputValue, setShowAutocomplete } = usePokemonInput();
+  const { onChange, onSubmit, autoCompleteComponent, inputValue } = usePokemonInput();
 
   return (
     <form onSubmit={onSubmit} style={{display: 'flex', justifyContent:'center'}}>
       <InputContainerStyled>
-        <InputStyled 
-          onBlur={() => setShowAutocomplete(false)} 
-          onFocus={() => setShowAutocomplete(true)}
+        <InputStyled
           onChange={onChange}
           placeholder="Pokemon name or ID" 
           value={inputValue} />
