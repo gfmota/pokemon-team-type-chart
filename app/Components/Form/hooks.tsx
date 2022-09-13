@@ -114,7 +114,8 @@ export function usePokemonInput() {
     }
     setAutocompleteSuggestions(pokemonList.filter(name =>
         name.indexOf(inputValue.toLowerCase()) > -1
-    ));
+      ).sort((a, b) => a.indexOf(inputValue.toLowerCase()) - b.indexOf(inputValue.toLowerCase()))
+    );
   }, [inputValue, setAutocompleteSuggestions]);
 
   const autoCompleteComponent = useMemo(() => {
