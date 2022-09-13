@@ -91,7 +91,6 @@ export function usePokemonInput() {
   const [inputValue, setInputValue] = useState<string>('');
   const [pokemonList, setPokemonList] = useState<string[]>([]);
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<string[]>([]);
-  const [showAutocomplete, setShowAutocomplete] = useState<boolean>(false);
   const { addPokemon, setError } = useTeamContext();
 
   useEffect(() => {
@@ -113,20 +112,20 @@ export function usePokemonInput() {
       return;
     }
     setAutocompleteSuggestions(pokemonList.filter(name =>
-        name.indexOf(inputValue.toLowerCase()) > -1
+        name.indexOf(inputValue.toLowerCase()) > -1 && inputValue !== name
       ).sort((a, b) => a.indexOf(inputValue.toLowerCase()) - b.indexOf(inputValue.toLowerCase()))
     );
   }, [inputValue, setAutocompleteSuggestions]);
 
   const autoCompleteComponent = useMemo(() => {
     const onClick = (suggestion: string) => setInputValue(suggestion);
-    if (!showAutocomplete) return null;
+    if (autocompleteSuggestions.length === 0) return null;
 
     return (
       <AutocompleteStyled>
         {autocompleteSuggestions.map(suggestion => <li onClick={() => onClick(suggestion)}>{suggestion}</li>)}
       </AutocompleteStyled>
-    )}, [autocompleteSuggestions, showAutocomplete, setInputValue])
+    )}, [autocompleteSuggestions, setInputValue])
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -147,6 +146,5 @@ export function usePokemonInput() {
     onSubmit,
     inputValue,
     autoCompleteComponent,
-    setShowAutocomplete,
   }
 }
