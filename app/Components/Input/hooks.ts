@@ -84,14 +84,17 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   };
 }
 
+const treatInputValue = (input: String) => input.toLowerCase().replace(' ', '-');
+
 export const usePokemonInput = () => {
   const [inputValue, setInputValue] = useState<String>('');
   const { addPokemon, setError } = useTeamContext();
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const treatedInputValue = treatInputValue(inputValue);
     try {
-      const response = await fetch(`${POKEMON_REQUEST_URL}${inputValue.toLowerCase()}`);
+      const response = await fetch(`${POKEMON_REQUEST_URL}${treatedInputValue}`);
       const json = await response.json();
       const pokemon = await createPokemonFromJSON(json);
       addPokemon(pokemon);
