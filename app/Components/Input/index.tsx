@@ -4,11 +4,15 @@ import { InputStyled } from "../../style";
 import { usePokemonInput } from "./hooks";
 
 const Input = () => {
-  const { setInputValue, onSubmit } = usePokemonInput();
+  const { onChange, onSubmit, autoCompleteComponent, inputValue } = usePokemonInput();
 
   return (
+    <>
     <form onSubmit={onSubmit} style={{display: 'flex', justifyContent:'center'}}>
-      <InputStyled placeholder="Pokemon name or ID" onChange={(e) => setInputValue(e.target.value)} />
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <InputStyled placeholder="Pokemon name or ID" onChange={onChange} value={inputValue as string} />
+        <div>{autoCompleteComponent}</div>
+      </div>
       <Image
         src='/icons/addPokemon.svg'
         width={42} height={42}
@@ -17,6 +21,7 @@ const Input = () => {
         style={{cursor: 'pointer'}}
       />
     </form>
+    </>
   );
 }
 

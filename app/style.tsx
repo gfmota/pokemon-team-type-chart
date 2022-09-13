@@ -58,10 +58,10 @@ export const PokemonStyled = styled.div<PokemonStyledIProps>`
 `
 
 export const InputStyled = styled.input`
-  width: 30%;
+  width: 30vw;
   min-width: 20em;
   padding: 12px 20px;
-  margin: 8px 4px;
+  margin: 0px 4px;
   box-sizing: border-box;
 `
 
@@ -102,5 +102,36 @@ export const TypeRelationsStyled = styled.div`
     border-top: black 3px solid;
     max-height: 50vh;
     overflow:auto;
+  }
+`
+
+export const AutocompleteStyled = styled.ul`
+  border: 1px solid #999;
+  border-top-width: 0;
+  list-style: none;
+  margin-top: 0;
+  max-height: 143px;
+  overflow-y: auto;
+  padding-left: 0;
+
+  position: absolute;
+  width: 30vw;
+  min-width: 20em;
+  background-color: white;
+  color: black;
+
+  li {
+    padding: 0.5rem;
+  }
+
+  li:hover {
+  background-color: #008f68;
+  color: #fae042;
+  cursor: pointer;
+  font-weight: 700;
+  }
+
+  li:not(:last-of-type) {
+  border-bottom: 1px solid #999;
   }
 `
