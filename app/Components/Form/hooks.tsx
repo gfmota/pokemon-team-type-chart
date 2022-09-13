@@ -126,7 +126,7 @@ export function usePokemonInput() {
       <AutocompleteStyled>
         {autocompleteSuggestions.map(suggestion => <li onClick={() => onClick(suggestion)}>{suggestion}</li>)}
       </AutocompleteStyled>
-    )}, [autocompleteSuggestions, showAutocomplete])
+    )}, [autocompleteSuggestions, showAutocomplete, setInputValue])
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
