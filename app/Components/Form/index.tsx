@@ -3,7 +3,7 @@ import React from "react";
 import { InputContainerStyled, InputStyled } from "../../style";
 import { usePokemonInput } from "./hooks";
 
-const Input = () => {
+const Form = () => {
   const { onChange, onSubmit, autoCompleteComponent, inputValue, setShowAutocomplete } = usePokemonInput();
 
   return (
@@ -28,4 +28,4 @@ const Input = () => {
   );
 }
 
-export default Input
+export default Form
