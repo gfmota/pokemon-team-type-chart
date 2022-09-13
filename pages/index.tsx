@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Input from '../app/Components/Input'
+import Form from '../app/Components/Form'
 import Pokemon from '../app/Components/Pokemon'
 import TypeRelations from '../app/Components/TypeRelations'
 import { useTeamContext } from '../app/Context/TeamContext'
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div >
-        <Input />
+        <Form />
         <MainStyled>
           <TeamStyled>
             {team.map((pokemon: PokemonI) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
