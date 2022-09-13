@@ -57,11 +57,16 @@ export const PokemonStyled = styled.div<PokemonStyledIProps>`
   `}
 `
 
-export const InputStyled = styled.input`
-  width: 30vw;
+export const InputContainerStyled = styled.div`
+  width: 30%;
   min-width: 20em;
+  display: flex;
+  flex-direction: column;
+  margin: 8px 4px;
+`
+
+export const InputStyled = styled.input`
   padding: 12px 20px;
-  margin: 0px 4px;
   box-sizing: border-box;
 `
 
@@ -115,20 +120,20 @@ export const AutocompleteStyled = styled.ul`
   padding-left: 0;
 
   position: absolute;
-  width: 30vw;
-  min-width: 20em;
   background-color: white;
   color: black;
+  width: 30%;
+  min-width: 20em;
 
   li {
     padding: 0.5rem;
   }
 
   li:hover {
-  background-color: #008f68;
-  color: #fae042;
+  background-color: #FF5757;
+  color: white;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: bold;
   }
 
   li:not(:last-of-type) {
