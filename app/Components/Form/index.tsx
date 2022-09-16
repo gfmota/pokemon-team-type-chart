@@ -1,19 +1,21 @@
 import Image from "next/image";
 import React from "react";
 import { InputContainerStyled, InputStyled } from "../../style";
+import Autocomplete from "./Autocomplete";
 import { usePokemonInput } from "./hooks";
 
 const Form = () => {
-  const { onChange, onSubmit, autoCompleteComponent, inputValue } = usePokemonInput();
+  const { onChange, onSubmit, inputValue, inputRef } = usePokemonInput();
 
   return (
     <form onSubmit={onSubmit} style={{display: 'flex', justifyContent:'center'}}>
-      <InputContainerStyled>
+      <InputContainerStyled ref={inputRef}>
         <InputStyled
           onChange={onChange}
-          placeholder="Pokemon name or ID" 
-          value={inputValue} />
-        <div>{autoCompleteComponent}</div>
+          placeholder="Pokemon name or ID"
+          value={inputValue}
+        />
+        <Autocomplete />
       </InputContainerStyled>
       <Image
         src='/icons/addPokemon.svg'

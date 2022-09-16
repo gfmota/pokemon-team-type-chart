@@ -1,11 +1,14 @@
 import './global.css'
 import type { AppProps } from 'next/app'
 import TeamContextProvider from '../app/Context/TeamContext'
+import FormContextProvider from '../app/Components/Form/Context/FormContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <TeamContextProvider>
-      <Component {...pageProps} />
+      <FormContextProvider>
+        <Component {...pageProps} />
+      </FormContextProvider>
     </TeamContextProvider>
   )
 }
