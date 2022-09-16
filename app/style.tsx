@@ -88,7 +88,6 @@ export const MainStyled = styled.div`
 
   @media (max-width: ${MOBILE_MAX_WIDTH}px) {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, 1fr);
   }
 `
 
@@ -101,7 +100,7 @@ export const TypeRelationsStyled = styled.div`
     position: fixed;
     bottom: 0;
     left: 0;
-    margin: 0;
+    margin: 0 0 2em 0;
     width: 100%;
     background-color: #807d7b;
     border-top: black 3px solid;
@@ -140,4 +139,16 @@ export const AutocompleteStyled = styled.ul`
   li:not(:last-of-type) {
   border-bottom: 1px solid #999;
   }
+`
+
+export const FooterStyled = styled.div`
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: .5em 0;
+
+  background-color: #333333;
+
+  display: flex;
+  justify-content: end;
 `
