@@ -1,9 +1,9 @@
 import React, { PropsWithChildren, useCallback, useContext, useState } from "react";
 import { PokemonI } from "../types";
 
-export const TeamContext = React.createContext<any>({});
+const TeamContext = React.createContext<any>({});
 
-const TeamContextProvider = (props: PropsWithChildren) => {
+const TeamContextProvider = ({ children }: PropsWithChildren) => {
   const [team, setTeam] = useState<PokemonI[]>([]);
   const [selected, setSelected] = useState<string|null>(null);
 
@@ -32,7 +32,7 @@ const TeamContextProvider = (props: PropsWithChildren) => {
 
   return (
     <TeamContext.Provider value={{team, addPokemon, removePokemon, setError, select, diselect, selected}}>
-        {props.children}
+      {children}
     </TeamContext.Provider>
   )
 }

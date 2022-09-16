@@ -1,8 +1,8 @@
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback } from "react";
 import { useTeamContext } from "../../Context/TeamContext";
-import { AutocompleteStyled } from "../../style";
 import { PokemonI } from "../../types";
 import { POKEMON_REQUEST_URL, TYPE_REQUEST_URL } from "./constants";
+import { useFormContext } from "./Context/FormContext";
 
 const removeItem = (from: any[], item: any) => from.splice(from.indexOf(item), 1);
 
@@ -88,46 +88,12 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
 const treatInputValue = (input: string) => input.toLowerCase().replace(' ', '-');
 
 export function usePokemonInput() {
-  const [inputValue, setInputValue] = useState<string>('');
-  const [pokemonList, setPokemonList] = useState<string[]>([]);
-  const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<string[]>([]);
+  const { inputValue, setInputValue } = useFormContext();
   const { addPokemon, setError } = useTeamContext();
-
-  useEffect(() => {
-    const fetchFullPokemonList = async () => {
-      const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1154');
-      const json = await response.json();
-      setPokemonList(json.results.map((pokemon: any) => pokemon.name));
-    };
-    fetchFullPokemonList();
-  }, [setPokemonList]);
 
   const onChange = useCallback((e: FormEvent<HTMLInputElement>) => {
     setInputValue((e.target as any).value);
   }, [setInputValue]);
-
-  useEffect(() => {
-    if (inputValue.length === 0) {
-      setAutocompleteSuggestions([]);
-      return;
-    }
-    setAutocompleteSuggestions(pokemonList.filter(name =>
-        name.indexOf(inputValue.toLowerCase()) > -1 && inputValue !== name
-      ).sort((a, b) => a.indexOf(inputValue.toLowerCase()) - b.indexOf(inputValue.toLowerCase()))
-    );
-  }, [inputValue, setAutocompleteSuggestions, pokemonList]);
-
-  const autoCompleteComponent = useMemo(() => {
-    const onClick = (suggestion: string) => setInputValue(suggestion);
-    if (autocompleteSuggestions.length === 0) return null;
-
-    return (
-      <AutocompleteStyled>
-        {autocompleteSuggestions.map(suggestion =>
-          <li key={suggestion} onClick={() => onClick(suggestion)}>{suggestion}</li>
-        )}
-      </AutocompleteStyled>
-  )}, [autocompleteSuggestions, setInputValue]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -147,7 +113,6 @@ export function usePokemonInput() {
   return {
     onChange,
     onSubmit,
-    inputValue,
-    autoCompleteComponent,
+    inputValue
   }
 }
