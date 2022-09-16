@@ -115,7 +115,7 @@ export function usePokemonInput() {
         name.indexOf(inputValue.toLowerCase()) > -1 && inputValue !== name
       ).sort((a, b) => a.indexOf(inputValue.toLowerCase()) - b.indexOf(inputValue.toLowerCase()))
     );
-  }, [inputValue, setAutocompleteSuggestions]);
+  }, [inputValue, setAutocompleteSuggestions, pokemonList]);
 
   const autoCompleteComponent = useMemo(() => {
     const onClick = (suggestion: string) => setInputValue(suggestion);
@@ -123,7 +123,9 @@ export function usePokemonInput() {
 
     return (
       <AutocompleteStyled>
-        {autocompleteSuggestions.map(suggestion => <li onClick={() => onClick(suggestion)}>{suggestion}</li>)}
+        {autocompleteSuggestions.map(suggestion =>
+          <li key={suggestion} onClick={() => onClick(suggestion)}>{suggestion}</li>
+        )}
       </AutocompleteStyled>
     )}, [autocompleteSuggestions, setInputValue])
 
