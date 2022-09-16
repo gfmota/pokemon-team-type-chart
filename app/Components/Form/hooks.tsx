@@ -127,7 +127,7 @@ export function usePokemonInput() {
           <li key={suggestion} onClick={() => onClick(suggestion)}>{suggestion}</li>
         )}
       </AutocompleteStyled>
-    )}, [autocompleteSuggestions, setInputValue])
+  )}, [autocompleteSuggestions, setInputValue]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -137,6 +137,7 @@ export function usePokemonInput() {
       const json = await response.json();
       const pokemon = await createPokemonFromJSON(json);
       addPokemon(pokemon);
+      setInputValue('');
     }
     catch (err) {
       setError(`${inputValue} not found`);
