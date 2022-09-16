@@ -73,7 +73,7 @@ export const InputStyled = styled.input`
 export const TeamStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
 
   @media (max-width: ${TABLET_MAX_WIDTH}px) {
     grid-template-columns: repeat(2, 1fr);
