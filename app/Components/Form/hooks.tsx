@@ -72,16 +72,20 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
     name,
     types: typesArr,
     sprites: spriteObj,
+    abilities: abilitiesArr,
   } = json;
   const types = typesArr.map((typeObj: any) => typeObj.type.name);
   const sprite = spriteObj.front_default;
   const typeRelations = await getTypeRelations(types);
+  const abilities = abilitiesArr.map((ability: any) => ability.ability.name);
 
   return {
     name: capitalize(name),
     types,
     sprite,
     typeRelations,
+    abilities,
+    selectedAbility: 0,
   };
 }
 

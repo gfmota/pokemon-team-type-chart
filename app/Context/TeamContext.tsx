@@ -1,3 +1,4 @@
+import { stringify } from "querystring";
 import React, { PropsWithChildren, useCallback, useContext, useState } from "react";
 import { PokemonI } from "../types";
 
@@ -27,11 +28,22 @@ const TeamContextProvider = ({ children }: PropsWithChildren) => {
     (name: string) => setTeam((prevTeam) => prevTeam.filter(pkmn => pkmn.name !== name)),
   [setTeam]);
 
+  const changeAbility = useCallback((pokemonName: string, abilityId: number) => {
+    setTeam((prevTeam) => {
+      const ind = prevTeam.findIndex(({name}: PokemonI) => name === pokemonName);
+      return [
+        ...prevTeam.slice(0, ind),
+        {...prevTeam[ind], selectedAbility: abilityId},
+        ...prevTeam.slice(ind + 1)
+      ];
+    });
+  }, [setTeam])
+
   const select = useCallback((name: string) => setSelected(name), [setSelected]);
   const diselect = useCallback(() => setSelected(null), [setSelected]);
 
   return (
-    <TeamContext.Provider value={{team, addPokemon, removePokemon, setError, select, diselect, selected}}>
+    <TeamContext.Provider value={{team, addPokemon, removePokemon, setError, select, diselect, selected, changeAbility}}>
       {children}
     </TeamContext.Provider>
   )
