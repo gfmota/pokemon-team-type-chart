@@ -94,13 +94,13 @@ export const MainStyled = styled.div`
 export const TypeRelationsStyled = styled.div`
   display: flex;
   justify-content: space-evenly;
-  margin: 0 25px;
+  margin: 0 25px 2.5em 25px;
 
   @media (max-width: ${MOBILE_MAX_WIDTH}px) {
     position: fixed;
     bottom: 0;
     left: 0;
-    margin: 0 0 2em 0;
+    margin: 0 0 2.1em 0;
     width: 100%;
     background-color: #807d7b;
     border-top: black 3px solid;
