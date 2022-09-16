@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useFormContext } from "../Context/FormContext";
 
 export const useAutocomplete = () => {
-  const { inputValue, setInputValue } = useFormContext()
+  const { inputValue, setInputValue, showAutocomplete } = useFormContext()
   const [pokemonList, setPokemonList] = useState<string[]>([]);
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<string[]>([]);
 
@@ -21,6 +21,7 @@ export const useAutocomplete = () => {
       setAutocompleteSuggestions([]);
       return;
     }
+
     setAutocompleteSuggestions(pokemonList.filter(name =>
         name.indexOf(inputValue.toLowerCase()) > -1 && inputValue !== name
       ).sort((a, b) => a.indexOf(inputValue.toLowerCase()) - b.indexOf(inputValue.toLowerCase()))
@@ -29,5 +30,5 @@ export const useAutocomplete = () => {
 
   const onClick = useCallback((suggestion: string) => setInputValue(suggestion), [setInputValue]);
 
-  return { autocompleteSuggestions, onClick };
+  return { autocompleteSuggestions, onClick, showAutocomplete };
 }

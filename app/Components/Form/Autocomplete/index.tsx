@@ -3,7 +3,9 @@ import { AutocompleteStyled } from '../../../style';
 import { useAutocomplete } from './hooks';
 
 const Autocomplete = () => {
-  const { autocompleteSuggestions, onClick } = useAutocomplete();
+  const { autocompleteSuggestions, onClick, showAutocomplete } = useAutocomplete();
+
+  if (!showAutocomplete) return null;
 
   return (
     <div>

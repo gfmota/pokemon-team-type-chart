@@ -88,7 +88,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
 const treatInputValue = (input: string) => input.toLowerCase().replace(' ', '-');
 
 export function usePokemonInput() {
-  const { inputValue, setInputValue } = useFormContext();
+  const { inputValue, setInputValue, inputRef } = useFormContext();
   const { addPokemon, setError } = useTeamContext();
 
   const onChange = useCallback((e: FormEvent<HTMLInputElement>) => {
@@ -113,6 +113,7 @@ export function usePokemonInput() {
   return {
     onChange,
     onSubmit,
-    inputValue
+    inputValue,
+    inputRef
   }
 }

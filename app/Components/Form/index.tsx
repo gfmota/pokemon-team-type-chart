@@ -5,11 +5,11 @@ import Autocomplete from "./Autocomplete";
 import { usePokemonInput } from "./hooks";
 
 const Form = () => {
-  const { onChange, onSubmit, inputValue } = usePokemonInput();
+  const { onChange, onSubmit, inputValue, inputRef } = usePokemonInput();
 
   return (
     <form onSubmit={onSubmit} style={{display: 'flex', justifyContent:'center'}}>
-      <InputContainerStyled>
+      <InputContainerStyled ref={inputRef}>
         <InputStyled
           onChange={onChange}
           placeholder="Pokemon name or ID"
