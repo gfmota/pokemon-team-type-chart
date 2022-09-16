@@ -11,7 +11,7 @@ const Form = () => {
       <InputContainerStyled>
         <InputStyled
           onChange={onChange}
-          placeholder="Pokemon name or ID" 
+          placeholder="Pokemon name or ID"
           value={inputValue} />
         <div>{autoCompleteComponent}</div>
       </InputContainerStyled>
