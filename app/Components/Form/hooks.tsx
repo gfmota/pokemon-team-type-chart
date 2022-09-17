@@ -1,4 +1,5 @@
 import { FormEvent, useCallback } from "react";
+import { TYPE_IMMUNITY_ABILITIES } from "../../constants";
 import { useTeamContext } from "../../Context/TeamContext";
 import { PokemonI } from "../../types";
 import { POKEMON_REQUEST_URL, TYPE_REQUEST_URL } from "./constants";
@@ -6,7 +7,7 @@ import { useFormContext } from "./Context/FormContext";
 
 const removeItem = (from: any[], item: any) => from.splice(from.indexOf(item), 1);
 
-const getTypeRelations = async (types: string[]) => {
+const getTypeRelations = async (types: string[], ability: string) => {
   const typeRelations: any = {
     x4: [],
     x2: [],
@@ -62,6 +63,16 @@ const getTypeRelations = async (types: string[]) => {
     });
   }
 
+  const typeImmunityAbility = TYPE_IMMUNITY_ABILITIES.find(a => a.name === ability)
+  if (typeImmunityAbility) {
+    const { type } = typeImmunityAbility;
+    removeItem(typeRelations.x4, type);
+    removeItem(typeRelations.x2, type);
+    removeItem(typeRelations.x05, type);
+    removeItem(typeRelations.x025, type);
+    typeRelations.x0.push(type);
+  };
+
   return typeRelations;
 }
 
@@ -76,8 +87,8 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   } = json;
   const types = typesArr.map((typeObj: any) => typeObj.type.name);
   const sprite = spriteObj.front_default;
-  const typeRelations = await getTypeRelations(types);
   const abilities = abilitiesArr.map((ability: any) => ability.ability.name);
+  const typeRelations = await getTypeRelations(types, abilities[0]);
 
   return {
     name: capitalize(name),

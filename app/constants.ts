@@ -1,4 +1,4 @@
-export const TypesBackgroundColors: any = {
+export const TYPES_BACKGROUND_COLORS: any = {
 	normal: '#A8A77A',
 	fire: '#EE8130',
 	water: '#6390F0',
@@ -18,6 +18,41 @@ export const TypesBackgroundColors: any = {
 	steel: '#B7B7CE',
 	fairy: '#D685AD',
 };
+
+export const TYPE_IMMUNITY_ABILITIES = [
+	{
+		name: 'flash-fire',
+		type: 'fire',
+	},
+	{
+		name: 'levitate',
+		type: 'ground',
+	},
+	{
+		name: 'lightningrod',
+		type: 'eletric',
+	},
+	{
+		name: 'motor-drive',
+		type: 'eletric',
+	},
+	{
+		name: 'sap-sipper',
+		type: 'grass',
+	},
+	{
+		name: 'storm-drain',
+		type: 'water',
+	},
+	{
+		name: 'volt-absorb',
+		type: 'eletric',
+	},
+	{
+		name: 'water-absorb',
+		type: 'water',
+	},
+];
 
 export const TABLET_MAX_WIDTH = 1024;
 export const MOBILE_MAX_WIDTH = 600;
