@@ -66,10 +66,10 @@ const getTypeRelations = async (types: string[], ability: string) => {
   const typeImmunityAbility = TYPE_IMMUNITY_ABILITIES.find(a => a.name === ability)
   if (typeImmunityAbility) {
     const { type } = typeImmunityAbility;
-    removeItem(typeRelations.x4, type);
-    removeItem(typeRelations.x2, type);
-    removeItem(typeRelations.x05, type);
-    removeItem(typeRelations.x025, type);
+    if (typeRelations.x4.includes(type)) removeItem(typeRelations.x4, type);
+    else if (typeRelations.x2.includes(type)) removeItem(typeRelations.x2, type);
+    else if (typeRelations.x05.includes(type)) removeItem(typeRelations.x05, type);
+    else if (typeRelations.x025.includes(type)) removeItem(typeRelations.x025, type);
     typeRelations.x0.push(type);
   };
 

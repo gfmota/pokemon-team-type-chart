@@ -27,6 +27,7 @@ export interface PokemonI {
   typeRelations: {
     x4: TypeEnum[],
     x2: TypeEnum[],
+    x0: TypeEnum[],
     x05: TypeEnum[],
     x025: TypeEnum[]
   },
