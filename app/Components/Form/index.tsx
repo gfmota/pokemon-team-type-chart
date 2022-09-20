@@ -17,13 +17,13 @@ const Form = () => {
         />
         <Autocomplete />
       </InputContainerStyled>
-      {!loading && <Image
+      <Image
         src='/buttons/addPokemon.svg'
         width={42} height={42}
         alt='Add pokemon'
         onClick={onSubmit as any}
-        style={{cursor: 'pointer'}}
-      />}
+        style={{cursor: 'pointer', filter: loading ? 'grayscale(1)' : '', transition: '.3s'}}
+      />
     </form>
   );
 }

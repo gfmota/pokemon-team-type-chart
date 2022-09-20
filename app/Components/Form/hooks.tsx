@@ -93,8 +93,10 @@ export function usePokemonInput() {
   const { addPokemon, setError } = useTeamContext();
 
   const onChange = useCallback((e: FormEvent<HTMLInputElement>) => {
+    if (loading) return;
+
     setInputValue((e.target as any).value);
-  }, [setInputValue]);
+  }, [loading, setInputValue]);
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
