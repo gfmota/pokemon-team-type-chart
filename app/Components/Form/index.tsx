@@ -5,7 +5,7 @@ import Autocomplete from "./Autocomplete";
 import { usePokemonInput } from "./hooks";
 
 const Form = () => {
-  const { onChange, onSubmit, inputValue, inputRef } = usePokemonInput();
+  const { onChange, onSubmit, inputValue, inputRef, loading } = usePokemonInput();
 
   return (
     <form onSubmit={onSubmit} style={{display: 'flex', justifyContent:'center'}}>
@@ -17,13 +17,13 @@ const Form = () => {
         />
         <Autocomplete />
       </InputContainerStyled>
-      <Image
+      {!loading && <Image
         src='/icons/addPokemon.svg'
         width={42} height={42}
         alt='Add pokemon'
         onClick={onSubmit as any}
         style={{cursor: 'pointer'}}
-      />
+      />}
     </form>
   );
 }
