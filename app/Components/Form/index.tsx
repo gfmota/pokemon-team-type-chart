@@ -18,7 +18,7 @@ const Form = () => {
         <Autocomplete />
       </InputContainerStyled>
       {!loading && <Image
-        src='/icons/addPokemon.svg'
+        src='/buttons/addPokemon.svg'
         width={42} height={42}
         alt='Add pokemon'
         onClick={onSubmit as any}

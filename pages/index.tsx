@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         </MainStyled>
         <FooterStyled>
           <Image
-            src='/icons/github.svg'
+            src='/github.svg'
             width={18} height={18}
             alt='Github'
           />
