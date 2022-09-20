@@ -31,7 +31,7 @@ const Pokemon = ({ pokemon: {name, types, sprite} }: PokemonProps) =>  {
         style={{transform: isSelected ? 'scale(1.1)' : '', transition: '.7s'}}
       />
       <Image
-        src='/icons/trash.svg'
+        src='/buttons/trash.svg'
         width={42} height={42}
         alt={`Remove ${name}`}
         onClick={() => removePokemon(name)}

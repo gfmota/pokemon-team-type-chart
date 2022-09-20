@@ -12,7 +12,7 @@ type TypeProps = {
 
 const Type = ({ id, selected, grayscale }: TypeProps) =>  (
   <TypeStyled backgroundColor={TypesBackgroundColors[id]} selected={!!selected} grayscale={!!grayscale} >
-    <Image src={`/icons/${id}.svg`} width={18} height={18} alt={id as any}/>
+    <Image src={`/typeIcons/${id}.svg`} width={18} height={18} alt={id as any}/>
   </TypeStyled>
 );
 
