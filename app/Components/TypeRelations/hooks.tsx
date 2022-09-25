@@ -8,7 +8,10 @@ export const useTypeRelations = () => {
   const [typeRelations, setTypeRelations] = useState<any>(null);
 
   useEffect(() => {
-    if (team.length === 0) return;
+    if (team.length === 0) {
+      setTypeRelations(null);
+      return;
+    }
 
     const relations: any = {
       x4: [],

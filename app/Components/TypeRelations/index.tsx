@@ -5,6 +5,7 @@ import { useTypeRelations } from "./hooks";
 
 const TypeRelations = () => {
   const { typeRelations, renderTypesList } = useTypeRelations();
+  console.log(typeRelations);
   if (typeRelations === null) return null;
 
   return (
