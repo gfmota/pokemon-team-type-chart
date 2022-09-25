@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import Footer from '../app/Components/Footer'
 import Form from '../app/Components/Form'
 import Pokemon from '../app/Components/Pokemon'
 import TypeRelations from '../app/Components/TypeRelations'
 import { useTeamContext } from '../app/Context/TeamContext'
-import { FooterStyled, MainStyled, TeamStyled } from '../app/style'
+import { MainStyled, TeamStyled } from '../app/style'
 import { PokemonI } from '../app/types'
 
 const Home: NextPage = () => {
@@ -26,19 +26,7 @@ const Home: NextPage = () => {
           </TeamStyled>
           <TypeRelations />
         </MainStyled>
-        <FooterStyled>
-          <Image
-            src='/github.svg'
-            width={18} height={18}
-            alt='Github'
-          />
-          <a
-            target='blank' href='https://github.com/gfmota/pokemon-team-type-chart'
-            style={{margin: '0 .5em', color: 'white', textDecoration: 'none'}}
-          >
-            Help us keep evolving
-          </a>
-        </FooterStyled>
+        <Footer />
       </div>
     </>
   );
