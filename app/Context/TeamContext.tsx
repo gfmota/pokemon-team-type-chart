@@ -23,12 +23,14 @@ const TeamContextProvider = ({ children }: PropsWithChildren) => {
       setTeam((prevTeam) => [...prevTeam, {...pokemon, id: prevTeam.length}])
     }, [team, setTeam, setError]);
 
-  const removePokemon = useCallback(
-    (name: string) => setTeam((prevTeam) => prevTeam.filter(pkmn => pkmn.name !== name)),
-  [setTeam]);
-
   const select = useCallback((name: string) => setSelected(name), [setSelected]);
   const diselect = useCallback(() => setSelected(null), [setSelected]);
+
+  const removePokemon = useCallback(
+    (name: string) => {
+      diselect();
+      setTeam((prevTeam) => prevTeam.filter(pkmn => pkmn.name !== name))
+    }, [setTeam, diselect]);
 
   return (
     <TeamContext.Provider value={{team, addPokemon, removePokemon, setError, select, diselect, selected}}>
