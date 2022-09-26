@@ -1,6 +1,8 @@
 import { FormEvent, useCallback, useState } from "react";
 import { useTeamContext } from "../../Context/TeamContext";
+import { addPokemon } from "../../Context/actions";
 import { PokemonI } from "../../types";
+import { sendError } from "../../utils";
 import { POKEMON_REQUEST_URL, TYPE_REQUEST_URL } from "./constants";
 import { useFormContext } from "./Context/FormContext";
 
@@ -82,6 +84,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
     types,
     sprite,
     typeRelations,
+    selected: false,
   };
 }
 
@@ -90,7 +93,7 @@ const treatInputValue = (input: string) => input.toLowerCase().replace(' ', '-')
 export function usePokemonInput() {
   const [loading, setLoading] = useState<boolean>(false);
   const { inputValue, setInputValue, inputRef } = useFormContext();
-  const { addPokemon, setError } = useTeamContext();
+  const { dispatch } = useTeamContext();
 
   const onChange = useCallback((e: FormEvent<HTMLInputElement>) => {
     if (loading) return;
@@ -108,10 +111,10 @@ export function usePokemonInput() {
       const response = await fetch(`${POKEMON_REQUEST_URL}${treatedInputValue}`);
       const json = await response.json();
       const pokemon = await createPokemonFromJSON(json);
-      addPokemon(pokemon);
+      dispatch(addPokemon(pokemon));
       setInputValue('');
     } catch (err) {
-      setError(`${inputValue} not found`);
+      sendError(`${inputValue} not found`);
     } finally {
       setLoading(false);
     }

@@ -6,10 +6,9 @@ import Pokemon from '../app/Components/Pokemon'
 import TypeRelations from '../app/Components/TypeRelations'
 import { useTeamContext } from '../app/Context/TeamContext'
 import { MainStyled, TeamStyled } from '../app/style'
-import { PokemonI } from '../app/types'
 
 const Home: NextPage = () => {
-  const {team} = useTeamContext();
+  const { team } = useTeamContext();
 
   return (
     <>
@@ -22,7 +21,7 @@ const Home: NextPage = () => {
         <Form />
         <MainStyled>
           <TeamStyled>
-            {team.map((pokemon: PokemonI) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
+            {Object.values(team).map((pokemon: any) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
           </TeamStyled>
           <TypeRelations />
         </MainStyled>

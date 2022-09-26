@@ -1,26 +1,27 @@
 import Image from "next/image";
-import React from "react";
+import React, { useMemo } from "react";
 
 import { PokemonI, TypeEnum } from "../../types";
 import { PokemonStyled } from "../../style";
 import Type from "../Type";
 import { useTeamContext } from "../../Context/TeamContext";
+import { diselectPokemon, removePokemon, selectPokemon } from "../../Context/actions";
 
 type PokemonProps = {
   pokemon: PokemonI,
 }
 
-const Pokemon = ({ pokemon: {name, types, sprite} }: PokemonProps) =>  {
-  const { removePokemon, select, diselect, selected } = useTeamContext();
-  const hasSelected = selected !== null;
-  const isSelected = selected === name;
+const Pokemon = ({ pokemon: {name, types, sprite, selected} }: PokemonProps) =>  {
+  const { team, dispatch } = useTeamContext();
+  const hasSelected = useMemo(() => !!Object.values(team).find((pkmn: any) => pkmn.selected), [team]);
+  console.log({selected})
 
   return (
     <PokemonStyled
-      onMouseEnter={() => select(name)}
-      onMouseLeave={diselect}
-      grayscale={hasSelected && !isSelected}
-      glow={isSelected}
+      onMouseEnter={() => dispatch(selectPokemon(name))}
+      onMouseLeave={() => dispatch(diselectPokemon())}
+      grayscale={hasSelected && !selected}
+      glow={selected}
     >
       <div>{name}</div>
       <div style={{display: 'flex', justifyContent: 'space-evenly', width: '100%'}}>
@@ -28,13 +29,13 @@ const Pokemon = ({ pokemon: {name, types, sprite} }: PokemonProps) =>  {
       </div>
       <Image
         src={sprite} width={120} height={120} alt="in game sprite"
-        style={{transform: isSelected ? 'scale(1.1)' : '', transition: '.7s'}}
+        style={{transform: selected ? 'scale(1.1)' : '', transition: '.7s'}}
       />
       <Image
         src='/buttons/trash.svg'
         width={42} height={42}
         alt={`Remove ${name}`}
-        onClick={() => removePokemon(name)}
+        onClick={() => dispatch(removePokemon(name))}
         style={{cursor: 'pointer'}}
       />
     </PokemonStyled>

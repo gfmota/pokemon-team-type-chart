@@ -22,6 +22,7 @@ export interface PokemonI {
   name: string,
   types: TypeEnum[],
   sprite: string,
+  selected: boolean,
   typeRelations: {
     x4: TypeEnum[],
     x2: TypeEnum[],
