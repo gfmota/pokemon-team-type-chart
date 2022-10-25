@@ -1,7 +1,7 @@
-import './global.css'
-import type { AppProps } from 'next/app'
-import TeamContextProvider from '../app/Context/TeamContext'
-import FormContextProvider from '../app/Components/Form/Context/FormContext'
+import './global.css';
+import type { AppProps } from 'next/app';
+import TeamContextProvider from '../app/Context/TeamContext';
+import FormContextProvider from '../app/Components/Form/Context/FormContext';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </FormContextProvider>
     </TeamContextProvider>
-  )
+  );
 }
 
-export default MyApp
+export default MyApp;

@@ -1,4 +1,10 @@
-import React, { PropsWithChildren, useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 const FormContext = React.createContext<any>({});
 
@@ -13,7 +19,7 @@ const FormContextProvider = ({ children }: PropsWithChildren) => {
       if (!(inputRef.current as any).contains(event.target)) {
         setShowAutocomplete(false);
         return;
-      };
+      }
       setShowAutocomplete(true);
     };
 
@@ -21,15 +27,17 @@ const FormContextProvider = ({ children }: PropsWithChildren) => {
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
     };
-  }, [ setShowAutocomplete ]);
+  }, [setShowAutocomplete]);
 
   return (
-    <FormContext.Provider value={{ inputValue, setInputValue, inputRef, showAutocomplete }}>
+    <FormContext.Provider
+      value={{ inputValue, setInputValue, inputRef, showAutocomplete }}
+    >
       {children}
     </FormContext.Provider>
-  )
-}
+  );
+};
 
 export const useFormContext = () => useContext(FormContext);
 
-export default FormContextProvider
+export default FormContextProvider;

@@ -1,15 +1,15 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Footer from '../app/Components/Footer'
-import Form from '../app/Components/Form'
-import Pokemon from '../app/Components/Pokemon'
-import TypeRelations from '../app/Components/TypeRelations'
-import { useTeamContext } from '../app/Context/TeamContext'
-import { MainStyled, TeamStyled } from '../app/style'
-import { PokemonI } from '../app/types'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Footer from '../app/Components/Footer';
+import Form from '../app/Components/Form';
+import Pokemon from '../app/Components/Pokemon';
+import TypeRelations from '../app/Components/TypeRelations';
+import { useTeamContext } from '../app/Context/TeamContext';
+import { MainStyled, TeamStyled } from '../app/style';
+import { PokemonI } from '../app/types';
 
 const Home: NextPage = () => {
-  const {team} = useTeamContext();
+  const { team } = useTeamContext();
 
   return (
     <>
@@ -22,7 +22,9 @@ const Home: NextPage = () => {
         <Form />
         <MainStyled>
           <TeamStyled>
-            {team.map((pokemon: PokemonI) => <Pokemon pokemon={pokemon} key={pokemon.name}/>)}
+            {team.map((pokemon: PokemonI) => (
+              <Pokemon pokemon={pokemon} key={pokemon.name} />
+            ))}
           </TeamStyled>
           <TypeRelations />
         </MainStyled>
@@ -30,6 +32,6 @@ const Home: NextPage = () => {
       </div>
     </>
   );
-}
+};
 
-export default Home
+export default Home;
