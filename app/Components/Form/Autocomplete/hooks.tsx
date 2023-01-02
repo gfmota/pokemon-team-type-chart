@@ -1,27 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { getPokemonList } from '../../../Services';
 import { useFormContext } from '../Context/FormContext';
 
 export const useAutocomplete = () => {
   const { inputValue, setInputValue, showAutocomplete } = useFormContext();
-  const [pokemonList, setPokemonList] = useState<string[]>([]);
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<
     string[]
   >([]);
+  const { data: pokemonList } = useQuery('POKEMON_LIST', getPokemonList);
 
   useEffect(() => {
-    const fetchFullPokemonList = async () => {
-      const response = await fetch(
-        'https://pokeapi.co/api/v2/pokemon?limit=1154'
-      );
-      const json = await response.json();
-      setPokemonList(json.results.map((pokemon: any) => pokemon.name));
-    };
-
-    fetchFullPokemonList();
-  }, [setPokemonList]);
-
-  useEffect(() => {
-    if (inputValue.length === 0) {
+    if (inputValue.length === 0 || !pokemonList) {
       setAutocompleteSuggestions([]);
       return;
     }

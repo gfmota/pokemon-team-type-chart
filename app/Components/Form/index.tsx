@@ -5,7 +5,7 @@ import Autocomplete from './Autocomplete';
 import { usePokemonInput } from './hooks';
 
 const Form = () => {
-  const { onChange, onSubmit, inputValue, inputRef, loading } =
+  const { onChange, onSubmit, inputValue, inputRef, isLoading } =
     usePokemonInput();
 
   return (
@@ -29,7 +29,7 @@ const Form = () => {
         onClick={onSubmit as any}
         style={{
           cursor: 'pointer',
-          filter: loading ? 'grayscale(1)' : '',
+          filter: isLoading ? 'grayscale(1)' : '',
           transition: '.3s',
         }}
       />

@@ -1,4 +1,5 @@
-import { FormEvent, useCallback, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { useTeamContext } from '../../Context/TeamContext';
 import { PokemonI } from '../../types';
 import { POKEMON_REQUEST_URL, TYPE_REQUEST_URL } from './constants';
@@ -89,49 +90,48 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   };
 };
 
-const treatInputValue = (input: string) =>
-  input.toLowerCase().replace(' ', '-');
+const getPokemon = async (input: string) => {
+  const treatedInput = input.toLowerCase().replace(' ', '-');
+  const response = await fetch(
+    `${POKEMON_REQUEST_URL}${treatedInput}`
+  );
+  const json = await response.json();
+  const pokemon = await createPokemonFromJSON(json);
+  console.log({treatedInput, pokemon})
+  return pokemon;
+}
 
 export function usePokemonInput() {
-  const [loading, setLoading] = useState<boolean>(false);
   const { inputValue, setInputValue, inputRef } = useFormContext();
   const { addPokemon, setError } = useTeamContext();
+  const { refetch, isLoading } = useQuery('GET_POKEMON', () => getPokemon(inputValue), {
+    refetchOnWindowFocus: false,
+    enabled: false,
+    onSuccess: (data) => addPokemon(data),
+    onError: () => setError(`${inputValue} not found`)
+  });
 
   const onChange = useCallback(
     (e: FormEvent<HTMLInputElement>) => {
-      if (loading) return;
+      if (isLoading) return;
 
       setInputValue((e.target as any).value);
     },
-    [loading, setInputValue]
+    [isLoading, setInputValue]
   );
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (loading) return;
-
-    const treatedInputValue = treatInputValue(inputValue);
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `${POKEMON_REQUEST_URL}${treatedInputValue}`
-      );
-      const json = await response.json();
-      const pokemon = await createPokemonFromJSON(json);
-      addPokemon(pokemon);
-      setInputValue('');
-    } catch (err) {
-      setError(`${inputValue} not found`);
-    } finally {
-      setLoading(false);
-    }
-  };
+    if (isLoading) return;
+    refetch();
+    setInputValue('');
+  }, [isLoading, refetch, setInputValue]);
 
   return {
     onChange,
     onSubmit,
     inputValue,
     inputRef,
-    loading,
+    isLoading,
   };
 }
