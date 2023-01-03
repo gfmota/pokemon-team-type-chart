@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import React from 'react';
+import {  FiTrash2 } from 'react-icons/fi'
 
 import { PokemonI, TypeEnum } from '../../types';
 import { PokemonStyled } from '../../style';
 import Type from '../Type';
 import { useTeamContext } from '../../Context/hook';
+import { IconButton } from '../IconButton';
 
 type PokemonProps = {
   pokemon: PokemonI;
@@ -41,14 +43,7 @@ const Pokemon = ({ pokemon: { name, types, sprite, id } }: PokemonProps) => {
         alt="in game sprite"
         style={{ transform: isFocus ? 'scale(1.1)' : '', transition: '.7s' }}
       />
-      <Image
-        src="/buttons/trash.svg"
-        width={42}
-        height={42}
-        alt={`Remove ${name}`}
-        onClick={() => removePokemon(id)}
-        style={{ cursor: 'pointer' }}
-      />
+      <IconButton IconComponent={FiTrash2} title={`Remove ${name}`} onClick={() => removePokemon(id)} />
     </PokemonStyled>
   );
 };

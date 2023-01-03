@@ -5,7 +5,7 @@ export const InputContainerStyled = styled.div`
   min-width: 20em;
   display: flex;
   flex-direction: column;
-  margin: 8px 4px;
+  margin-right: 4px;
 `;
 
 interface InputStyledProps {

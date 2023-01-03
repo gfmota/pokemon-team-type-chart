@@ -114,6 +114,8 @@ export const AutocompleteStyled = styled.ul`
   padding-left: 0;
 
   position: absolute;
+  top: 40px;
+
   background-color: white;
   color: black;
   width: 30%;

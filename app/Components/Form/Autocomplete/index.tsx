@@ -9,7 +9,6 @@ const Autocomplete = () => {
   if (!showAutocomplete) return null;
 
   return (
-    <div>
       <AutocompleteStyled>
         {autocompleteSuggestions.map((suggestion) => (
           <li key={suggestion} onClick={() => onClick(suggestion)}>
@@ -17,7 +16,6 @@ const Autocomplete = () => {
           </li>
         ))}
       </AutocompleteStyled>
-    </div>
   );
 };
 

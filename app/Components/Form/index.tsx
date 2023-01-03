@@ -1,8 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
+import { BsPlusLg } from 'react-icons/bs';
+
 import { InputContainerStyled, InputStyled } from './style';
 import Autocomplete from './Autocomplete';
 import { usePokemonInput } from './hooks';
+import { IconButton } from '../IconButton';
 
 const Form = () => {
   const { onChange, onSubmit, inputValue, inputRef, isLoading, error } =
@@ -11,7 +14,7 @@ const Form = () => {
   return (
     <form
       onSubmit={onSubmit}
-      style={{ display: 'flex', justifyContent: 'center' }}
+      style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', margin: '8px' }}
     >
       <InputContainerStyled ref={inputRef}>
         <InputStyled
@@ -23,18 +26,9 @@ const Form = () => {
         {error && <div style={{ color: 'red' }}>{error}</div>}
         <Autocomplete />
       </InputContainerStyled>
-      <Image
-        src="/buttons/addPokemon.svg"
-        width={42}
-        height={42}
-        alt="Add pokemon"
-        onClick={onSubmit as any}
-        style={{
-          cursor: 'pointer',
-          filter: isLoading ? 'grayscale(1)' : '',
-          transition: '.3s',
-        }}
-      />
+      <IconButton type='submit' IconComponent={BsPlusLg} title='Add pokemon' style={{
+  filter: isLoading ? 'grayscale(1)' : '',
+  transition: '.3s',}}/>
     </form>
   );
 };
