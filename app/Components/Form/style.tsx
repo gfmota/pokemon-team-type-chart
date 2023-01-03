@@ -9,8 +9,8 @@ export const InputContainerStyled = styled.div`
 `;
 
 interface InputStyledProps {
-  error?: boolean
-};
+  error?: boolean;
+}
 
 export const InputStyled = styled.input<InputStyledProps>`
   padding: 12px 20px;

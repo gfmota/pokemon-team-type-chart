@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
-import { useTeamContext } from '../../Context/TeamContext';
+import { useTeamContext } from '../../Context/hook';
 import { PokemonI } from '../../types';
 import { POKEMON_REQUEST_URL, TYPE_REQUEST_URL } from './constants';
 import { useFormContext } from './Context/FormContext';
@@ -77,13 +77,14 @@ const capitalize = (str: string) =>
   `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
 
 const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
-  const { name, types: typesArr, sprites: spriteObj } = json;
+  const { name, types: typesArr, sprites: spriteObj, id } = json;
   const types = typesArr.map((typeObj: any) => typeObj.type.name);
   const sprite = spriteObj.front_default;
   const typeRelations = await getTypeRelations(types);
 
   return {
     name: capitalize(name),
+    id,
     types,
     sprite,
     typeRelations,
@@ -92,32 +93,34 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
 
 const getPokemon = async (input: string) => {
   const treatedInput = input.toLowerCase().replace(' ', '-');
-  const response = await fetch(
-    `${POKEMON_REQUEST_URL}${treatedInput}`
-  );
+  const response = await fetch(`${POKEMON_REQUEST_URL}${treatedInput}`);
   const json = await response.json();
   const pokemon = await createPokemonFromJSON(json);
   return pokemon;
-}
+};
 
 export function usePokemonInput() {
   const { inputValue, setInputValue, inputRef } = useFormContext();
   const { addPokemon } = useTeamContext();
-  const [error, setError] = useState<string|null>(null);
-  const { refetch, isLoading } = useQuery('GET_POKEMON', () => getPokemon(inputValue), {
-    refetchOnWindowFocus: false,
-    enabled: false,
-    onSuccess: (data) => {
-      try {
-        addPokemon(data);
-        setError(null);
-      } catch (e: any) {
-        setError(e.message);
-      }
-    },
-    onError: () => setError(`${inputValue} not found`),
-    onSettled: () => setInputValue('')
-  });
+  const [error, setError] = useState<string | null>(null);
+  const { refetch, isLoading } = useQuery(
+    'GET_POKEMON',
+    () => getPokemon(inputValue),
+    {
+      refetchOnWindowFocus: false,
+      enabled: false,
+      onSuccess: (data) => {
+        try {
+          addPokemon(data);
+          setError(null);
+        } catch (e: any) {
+          setError(e.message);
+        }
+      },
+      onError: () => setError(`${inputValue} not found`),
+      onSettled: () => setInputValue(''),
+    }
+  );
 
   const onChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,11 +131,14 @@ export function usePokemonInput() {
     [isLoading, setInputValue]
   );
 
-  const onSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (isLoading) return;
-    refetch();
-  }, [isLoading, refetch, setInputValue]);
+  const onSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      if (isLoading) return;
+      refetch();
+    },
+    [isLoading, refetch, setInputValue]
+  );
 
   return {
     onChange,

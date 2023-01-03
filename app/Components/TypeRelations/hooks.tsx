@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useTeamContext } from '../../Context/TeamContext';
-import { PokemonI } from '../../types';
+import { useTeamContext } from '../../Context/hook';
+import { PokemonI, RelationKeys, TypeEnum } from '../../types';
 import Type from '../Type';
+import { TypeRelation } from './model';
 
 export const useTypeRelations = () => {
-  const { team, selected } = useTeamContext();
+  const { team, pokemonOnFocus } = useTeamContext();
   const [typeRelations, setTypeRelations] = useState<any>(null);
 
   useEffect(() => {
@@ -13,44 +14,42 @@ export const useTypeRelations = () => {
       return;
     }
 
-    const relations: any = {
-      x4: [],
-      x2: [],
-      x05: [],
-      x025: [],
-      x0: [],
+    const relations = {
+      x4: [] as TypeRelation[],
+      x2: [] as TypeRelation[],
+      x05: [] as TypeRelation[],
+      x025: [] as TypeRelation[],
+      x0: [] as TypeRelation[],
     };
 
     team.forEach((pokemon: PokemonI) =>
-      Object.entries(pokemon.typeRelations).forEach(([key, value]: any) => {
-        value.forEach((type: string) => {
-          if (relations[key].find((relation: any) => relation.type === type)) {
-            const relation = relations[key].find(
-              (relation: any) => relation.type === type
-            );
+      (Object.entries(pokemon.typeRelations) as [RelationKeys, TypeEnum[]][]).forEach(([key, value]) => {
+        value.forEach((type: TypeEnum) => {
+          const relation = relations[key].find((relation: TypeRelation) => relation.type === type);
+          if (relation) {
             relation.counter += 1;
-            if (pokemon.name === selected) relation.isSelected = true;
+            if (pokemon.id === pokemonOnFocus) relation.onFocus = true;
             return;
           }
           relations[key].push({
             type,
             counter: 1,
-            isSelected: pokemon.name === selected,
+            onFocus: pokemon.id === pokemonOnFocus,
           });
         });
       })
     );
 
     setTypeRelations(relations);
-  }, [team, selected]);
+  }, [team, pokemonOnFocus]);
 
-  const renderTypesList = (type: any[]) =>
-    type.map(({ type, counter, isSelected }: any) => (
+  const renderTypesList = (types: any[]) =>
+    types.map(({ type, counter, onFocus }: TypeRelation) => (
       <div key={type} style={{ display: 'flex', alignItems: 'flex-end' }}>
         <Type
           id={type}
-          selected={isSelected}
-          grayscale={!isSelected && selected !== null}
+          selected={onFocus}
+          grayscale={!onFocus && !!pokemonOnFocus}
         />
         <div
           style={{

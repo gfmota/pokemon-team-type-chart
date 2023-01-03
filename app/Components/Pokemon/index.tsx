@@ -4,23 +4,23 @@ import React from 'react';
 import { PokemonI, TypeEnum } from '../../types';
 import { PokemonStyled } from '../../style';
 import Type from '../Type';
-import { useTeamContext } from '../../Context/TeamContext';
+import { useTeamContext } from '../../Context/hook';
 
 type PokemonProps = {
   pokemon: PokemonI;
 };
 
-const Pokemon = ({ pokemon: { name, types, sprite } }: PokemonProps) => {
-  const { removePokemon, select, diselect, selected } = useTeamContext();
-  const hasSelected = selected !== null;
-  const isSelected = selected === name;
+const Pokemon = ({ pokemon: { name, types, sprite, id } }: PokemonProps) => {
+  const { pokemonOnFocus, removePokemon, onFocus, onUnfocus } = useTeamContext();
+  const hasFocus = !!pokemonOnFocus;
+  const isFocus = pokemonOnFocus === id;
 
   return (
     <PokemonStyled
-      onMouseEnter={() => select(name)}
-      onMouseLeave={diselect}
-      grayscale={hasSelected && !isSelected}
-      glow={isSelected}
+      onMouseEnter={() => onFocus(id)}
+      onMouseLeave={onUnfocus}
+      grayscale={hasFocus && !isFocus}
+      glow={isFocus}
     >
       <div>{name}</div>
       <div
@@ -39,14 +39,14 @@ const Pokemon = ({ pokemon: { name, types, sprite } }: PokemonProps) => {
         width={120}
         height={120}
         alt="in game sprite"
-        style={{ transform: isSelected ? 'scale(1.1)' : '', transition: '.7s' }}
+        style={{ transform: isFocus ? 'scale(1.1)' : '', transition: '.7s' }}
       />
       <Image
         src="/buttons/trash.svg"
         width={42}
         height={42}
         alt={`Remove ${name}`}
-        onClick={() => removePokemon(name)}
+        onClick={() => removePokemon(id)}
         style={{ cursor: 'pointer' }}
       />
     </PokemonStyled>

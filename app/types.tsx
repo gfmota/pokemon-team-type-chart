@@ -18,14 +18,18 @@ export enum TypeEnum {
   steel,
   fairy,
 }
+
+export enum RelationKeys {
+  X4 = 'x4',
+  X2 = 'x2',
+  X0 = 'x0',
+  X05 = 'x05',
+  X025 = 'x025',
+}
 export interface PokemonI {
   name: string;
+  id: number;
   types: TypeEnum[];
   sprite: string;
-  typeRelations: {
-    x4: TypeEnum[];
-    x2: TypeEnum[];
-    x05: TypeEnum[];
-    x025: TypeEnum[];
-  };
+  typeRelations: { [key in RelationKeys]: TypeEnum[] };
 }

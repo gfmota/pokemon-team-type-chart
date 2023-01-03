@@ -20,7 +20,7 @@ const Form = () => {
           value={inputValue}
           error={!!error}
         />
-        {error && <div style={{color: 'red'}}>{error}</div>}
+        {error && <div style={{ color: 'red' }}>{error}</div>}
         <Autocomplete />
       </InputContainerStyled>
       <Image

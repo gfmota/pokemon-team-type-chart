@@ -4,7 +4,7 @@ import Footer from '../app/Components/Footer';
 import Form from '../app/Components/Form';
 import Pokemon from '../app/Components/Pokemon';
 import TypeRelations from '../app/Components/TypeRelations';
-import { useTeamContext } from '../app/Context/TeamContext';
+import { useTeamContext } from '../app/Context/hook';
 import { MainStyled, TeamStyled } from '../app/style';
 import { PokemonI } from '../app/types';
 
