@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import React from 'react';
-import { InputContainerStyled, InputStyled } from '../../style';
+import { InputContainerStyled, InputStyled } from './style';
 import Autocomplete from './Autocomplete';
 import { usePokemonInput } from './hooks';
 
 const Form = () => {
-  const { onChange, onSubmit, inputValue, inputRef, isLoading } =
+  const { onChange, onSubmit, inputValue, inputRef, isLoading, error } =
     usePokemonInput();
 
   return (
@@ -18,7 +18,9 @@ const Form = () => {
           onChange={onChange}
           placeholder="Pokemon name or ID"
           value={inputValue}
+          error={!!error}
         />
+        {error && <div style={{color: 'red'}}>{error}</div>}
         <Autocomplete />
       </InputContainerStyled>
       <Image

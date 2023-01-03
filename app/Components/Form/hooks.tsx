@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useTeamContext } from '../../Context/TeamContext';
 import { PokemonI } from '../../types';
@@ -97,39 +97,47 @@ const getPokemon = async (input: string) => {
   );
   const json = await response.json();
   const pokemon = await createPokemonFromJSON(json);
-  console.log({treatedInput, pokemon})
   return pokemon;
 }
 
 export function usePokemonInput() {
   const { inputValue, setInputValue, inputRef } = useFormContext();
-  const { addPokemon, setError } = useTeamContext();
+  const { addPokemon } = useTeamContext();
+  const [error, setError] = useState<string|null>(null);
   const { refetch, isLoading } = useQuery('GET_POKEMON', () => getPokemon(inputValue), {
     refetchOnWindowFocus: false,
     enabled: false,
-    onSuccess: (data) => addPokemon(data),
-    onError: () => setError(`${inputValue} not found`)
+    onSuccess: (data) => {
+      try {
+        addPokemon(data);
+        setError(null);
+      } catch (e: any) {
+        setError(e.message);
+      }
+    },
+    onError: () => setError(`${inputValue} not found`),
+    onSettled: () => setInputValue('')
   });
 
   const onChange = useCallback(
-    (e: FormEvent<HTMLInputElement>) => {
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       if (isLoading) return;
 
-      setInputValue((e.target as any).value);
+      setInputValue(e.target.value);
     },
     [isLoading, setInputValue]
   );
 
-  const onSubmit = useCallback((event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (isLoading) return;
     refetch();
-    setInputValue('');
   }, [isLoading, refetch, setInputValue]);
 
   return {
     onChange,
     onSubmit,
+    error,
     inputValue,
     inputRef,
     isLoading,

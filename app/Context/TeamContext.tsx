@@ -12,25 +12,18 @@ const TeamContextProvider = ({ children }: PropsWithChildren) => {
   const [team, setTeam] = useState<PokemonI[]>([]);
   const [selected, setSelected] = useState<string | null>(null);
 
-  const setError = useCallback(
-    (errorMessage: string) => alert(errorMessage),
-    []
-  );
-
   const addPokemon = useCallback(
     (pokemon: PokemonI) => {
       if (team.length >= 6) {
-        setError('Your team is already full');
-        return;
+        throw new Error('Your team is already full');
       }
       if (team.find((pkmn) => pkmn.name === pokemon.name)) {
-        setError(`${pokemon.name} is already in your team`);
-        return;
+        throw new Error(`${pokemon.name} is already in your team`);
       }
 
       setTeam((prevTeam) => [...prevTeam, { ...pokemon, id: prevTeam.length }]);
     },
-    [team, setTeam, setError]
+    [team, setTeam]
   );
 
   const select = useCallback(
@@ -53,7 +46,6 @@ const TeamContextProvider = ({ children }: PropsWithChildren) => {
         team,
         addPokemon,
         removePokemon,
-        setError,
         select,
         diselect,
         selected,

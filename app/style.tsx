@@ -65,19 +65,6 @@ export const PokemonStyled = styled.div<PokemonStyledIProps>`
   `}
 `;
 
-export const InputContainerStyled = styled.div`
-  width: 30%;
-  min-width: 20em;
-  display: flex;
-  flex-direction: column;
-  margin: 8px 4px;
-`;
-
-export const InputStyled = styled.input`
-  padding: 12px 20px;
-  box-sizing: border-box;
-`;
-
 export const TeamStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
