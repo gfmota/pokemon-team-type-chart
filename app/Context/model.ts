@@ -9,7 +9,7 @@ export enum ActionTypes {
   ADD_POKEMON = 'ADD_POKEMON',
   REMOVE_POKEMON = 'REMOVE_POKEMON',
   FOCUS_POKEMON = 'FOCUS_POKEMON',
-  UNFOCUS = 'UNFOCUS'
+  UNFOCUS = 'UNFOCUS',
 }
 
 export interface Action {

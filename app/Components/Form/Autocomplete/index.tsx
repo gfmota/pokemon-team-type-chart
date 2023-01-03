@@ -9,13 +9,13 @@ const Autocomplete = () => {
   if (!showAutocomplete) return null;
 
   return (
-      <AutocompleteStyled>
-        {autocompleteSuggestions.map((suggestion) => (
-          <li key={suggestion} onClick={() => onClick(suggestion)}>
-            {suggestion}
-          </li>
-        ))}
-      </AutocompleteStyled>
+    <AutocompleteStyled>
+      {autocompleteSuggestions.map((suggestion) => (
+        <li key={suggestion} onClick={() => onClick(suggestion)}>
+          {suggestion}
+        </li>
+      ))}
+    </AutocompleteStyled>
   );
 };
 

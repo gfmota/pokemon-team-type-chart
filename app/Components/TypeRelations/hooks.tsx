@@ -23,9 +23,13 @@ export const useTypeRelations = () => {
     };
 
     team.forEach((pokemon: PokemonI) =>
-      (Object.entries(pokemon.typeRelations) as [RelationKeys, TypeEnum[]][]).forEach(([key, value]) => {
+      (
+        Object.entries(pokemon.typeRelations) as [RelationKeys, TypeEnum[]][]
+      ).forEach(([key, value]) => {
         value.forEach((type: TypeEnum) => {
-          const relation = relations[key].find((relation: TypeRelation) => relation.type === type);
+          const relation = relations[key].find(
+            (relation: TypeRelation) => relation.type === type
+          );
           if (relation) {
             relation.counter += 1;
             if (pokemon.id === pokemonOnFocus) relation.onFocus = true;

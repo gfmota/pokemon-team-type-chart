@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import {  FiTrash2 } from 'react-icons/fi'
+import { FiTrash2 } from 'react-icons/fi';
 
 import { PokemonI, TypeEnum } from '../../types';
 import { PokemonStyled } from '../../style';
@@ -13,7 +13,8 @@ type PokemonProps = {
 };
 
 const Pokemon = ({ pokemon: { name, types, sprite, id } }: PokemonProps) => {
-  const { pokemonOnFocus, removePokemon, onFocus, onUnfocus } = useTeamContext();
+  const { pokemonOnFocus, removePokemon, onFocus, onUnfocus } =
+    useTeamContext();
   const hasFocus = !!pokemonOnFocus;
   const isFocus = pokemonOnFocus === id;
 
@@ -36,14 +37,18 @@ const Pokemon = ({ pokemon: { name, types, sprite, id } }: PokemonProps) => {
           <Type id={type} key={type} />
         ))}
       </div>
-      <Image
-        src={sprite}
+      <img
+        src={`https://play.pokemonshowdown.com/sprites/ani/${name.toLowerCase()}.gif`}
+        alt="in game sprite"
         width={120}
         height={120}
-        alt="in game sprite"
-        style={{ transform: isFocus ? 'scale(1.1)' : '', transition: '.7s' }}
+        style={{ transform: isFocus ? 'scale(1.25)' : '', transition: '.7s' }}
       />
-      <IconButton IconComponent={FiTrash2} title={`Remove ${name}`} onClick={() => removePokemon(id)} />
+      <IconButton
+        IconComponent={FiTrash2}
+        title={`Remove ${name}`}
+        onClick={() => removePokemon(id)}
+      />
     </PokemonStyled>
   );
 };

@@ -1,22 +1,27 @@
-import { useCallback, useContext } from "react"
-import { PokemonI } from "../types";
-import { ActionTypes } from "./model";
-import { TeamContext } from "./TeamContext";
+import { useCallback, useContext } from 'react';
+import { PokemonI } from '../types';
+import { ActionTypes } from './model';
+import { TeamContext } from './TeamContext';
 
 export const useTeamContext = () => {
   const { state, dispatch } = useContext(TeamContext);
 
   const onFocus = useCallback(
-    (pokemonId: number) => dispatch({
-      type: ActionTypes.FOCUS_POKEMON,
-      data: { pokemonId }
-    }),
+    (pokemonId: number) =>
+      dispatch({
+        type: ActionTypes.FOCUS_POKEMON,
+        data: { pokemonId },
+      }),
     [dispatch]
   );
-  const onUnfocus = useCallback(() => dispatch({
-      type: ActionTypes.UNFOCUS,
-      data: {}
-    }), [dispatch]);
+  const onUnfocus = useCallback(
+    () =>
+      dispatch({
+        type: ActionTypes.UNFOCUS,
+        data: {},
+      }),
+    [dispatch]
+  );
 
   const addPokemon = useCallback(
     (pokemon: PokemonI) => {
@@ -29,8 +34,8 @@ export const useTeamContext = () => {
 
       dispatch({
         type: ActionTypes.ADD_POKEMON,
-        data: { pokemon }
-      })
+        data: { pokemon },
+      });
     },
     [state, dispatch]
   );
@@ -40,8 +45,8 @@ export const useTeamContext = () => {
       onUnfocus();
       dispatch({
         type: ActionTypes.REMOVE_POKEMON,
-        data: { pokemonId }
-      })
+        data: { pokemonId },
+      });
     },
     [dispatch]
   );
@@ -51,6 +56,6 @@ export const useTeamContext = () => {
     addPokemon,
     removePokemon,
     onFocus,
-    onUnfocus
-  }
-}
+    onUnfocus,
+  };
+};

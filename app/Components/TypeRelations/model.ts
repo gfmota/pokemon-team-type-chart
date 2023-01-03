@@ -1,7 +1,7 @@
-import { TypeEnum } from "../../types";
+import { TypeEnum } from '../../types';
 
 export interface TypeRelation {
-  type: TypeEnum,
+  type: TypeEnum;
   counter: number;
   onFocus?: boolean;
 }

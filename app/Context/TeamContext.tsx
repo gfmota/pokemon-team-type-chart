@@ -1,6 +1,4 @@
-import React, {
-  useReducer,
-} from 'react';
+import React, { useReducer } from 'react';
 import { Action, State } from './model';
 import { reducer as TeamContextReducer } from './reducer';
 

@@ -1,15 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledButton = styled.button`
   border: none;
-  background-color: #FF5757;
+  background-color: #ff5757;
   border-radius: 50%;
   color: white;
   padding: 1em;
   cursor: pointer;
+  transition: 0.5s;
 
   * {
-    transition: .5s;
+    transition: inherit;
   }
 
   :hover {
@@ -18,4 +19,4 @@ export const StyledButton = styled.button`
       transform: scale(1.05);
     }
   }
-`
+`;

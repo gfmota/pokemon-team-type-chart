@@ -14,7 +14,12 @@ const Form = () => {
   return (
     <form
       onSubmit={onSubmit}
-      style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', margin: '8px' }}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        margin: '8px',
+      }}
     >
       <InputContainerStyled ref={inputRef}>
         <InputStyled
@@ -26,9 +31,15 @@ const Form = () => {
         {error && <div style={{ color: 'red' }}>{error}</div>}
         <Autocomplete />
       </InputContainerStyled>
-      <IconButton type='submit' IconComponent={BsPlusLg} title='Add pokemon' style={{
-  filter: isLoading ? 'grayscale(1)' : '',
-  transition: '.3s',}}/>
+      <IconButton
+        type="submit"
+        IconComponent={BsPlusLg}
+        title="Add pokemon"
+        style={{
+          filter: isLoading ? 'grayscale(1)' : '',
+          transition: '.3s',
+        }}
+      />
     </form>
   );
 };
