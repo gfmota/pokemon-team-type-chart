@@ -6,7 +6,7 @@ const Autocomplete = () => {
   const { autocompleteSuggestions, onClick, showAutocomplete } =
     useAutocomplete();
 
-  if (!showAutocomplete) return null;
+  if (!showAutocomplete || autocompleteSuggestions.length === 0) return null;
 
   return (
     <AutocompleteStyled>
