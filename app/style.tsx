@@ -31,40 +31,6 @@ export const TypeStyled = styled.div<TypeStyledIProps>`
   `}
 `;
 
-type PokemonStyledIProps = {
-  grayscale: boolean;
-  glow: boolean;
-};
-
-export const PokemonStyled = styled.div<PokemonStyledIProps>`
-  border-radius: 100%;
-  background-color: #807d7b;
-  color: white;
-
-  max-height: 250px;
-  padding: 10px;
-  margin: 0 0 10px 10px;
-  gap: 5px;
-
-  display: flex;
-  flex-direction: column;
-  justify-items: space-between;
-  align-items: center;
-
-  transition: 0.7s;
-  ${({ grayscale }) =>
-    grayscale &&
-    `
-    filter: grayscale(1);
-  `}
-
-  ${({ glow }) =>
-    glow &&
-    `
-    box-shadow: 0px 0px 25px 0px #807d7b;
-  `}
-`;
-
 export const TeamStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);

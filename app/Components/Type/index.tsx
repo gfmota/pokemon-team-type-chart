@@ -12,7 +12,7 @@ type TypeProps = {
 
 const Type = ({ id, selected, grayscale }: TypeProps) => (
   <TypeStyled
-    backgroundColor={TypesBackgroundColors[id]}
+    backgroundColor={TypesBackgroundColors[id].main}
     selected={!!selected}
     grayscale={!!grayscale}
   >
