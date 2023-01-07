@@ -15,6 +15,8 @@ type PokemonProps = {
   pokemon: PokemonI;
 };
 
+const capitalize = (name: string) => name.split('-').map((str) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`).join(' ');
+
 export const Pokemon = ({ pokemon }: PokemonProps) => {
   const { onRemove, onHover, onBlur, isGrayscale, isFocus, onAbilityChange } = usePokemon(pokemon);
   const { types, name, abilities } = pokemon;
@@ -28,15 +30,14 @@ export const Pokemon = ({ pokemon }: PokemonProps) => {
       type={types[0]}
     >
       <img
-        src={`https://play.pokemonshowdown.com/sprites/ani/${name.toLowerCase()}.gif`}
+        src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
         alt="in game sprite"
-        width={120}
-        height={120}
+        width={100}
       />
       <StyledInfoWrapper>
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div>{name}</div>
-          <StyledIconButton title={`Remove ${name}`} onClick={onRemove}>
+          <div>{capitalize(name)}</div>
+          <StyledIconButton title={`Remove ${capitalize(name)}`} onClick={onRemove}>
             <FiTrash2 size={16} />
           </StyledIconButton>
         </div>
@@ -46,7 +47,7 @@ export const Pokemon = ({ pokemon }: PokemonProps) => {
           ))}
         </StyledPokemonTypesWrapper>
         <select onChange={onAbilityChange}>
-          {abilities.map(ability => <option key={ability} value={ability} >{ability}</option>)}
+          {abilities.map(ability => <option key={ability} value={ability} >{capitalize(ability)}</option>)}
         </select>
       </StyledInfoWrapper>
     </StyledPokemonWrapper>

@@ -2,9 +2,6 @@ import { PokemonI, RelationKeys, TypeEnum, TypeRelationsI } from "../types";
 
 const POKEAPI_ROUTE = 'https://pokeapi.co/api/v2/';
 
-const capitalize = (str: string) =>
-  `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
-
 const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   const types = json.types.map((typeObj: any) => typeObj.type.name);
   const sprite = json.sprites.front_default;
@@ -18,7 +15,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   } as TypeRelationsI;
 
   return {
-    name: capitalize(json.name),
+    name: json.name,
     id: json.id,
     types,
     sprite,
