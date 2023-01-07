@@ -1,4 +1,4 @@
-import { PokemonI } from '../types';
+import { PokemonI, TypeRelationsI } from '../types';
 
 export interface State {
   team: PokemonI[];
@@ -10,6 +10,7 @@ export enum ActionTypes {
   REMOVE_POKEMON = 'REMOVE_POKEMON',
   FOCUS_POKEMON = 'FOCUS_POKEMON',
   UNFOCUS = 'UNFOCUS',
+  SET_TYPE_RELATIONS = 'SET_TYPE_RELATIONS',
 }
 
 export interface Action {
@@ -17,5 +18,6 @@ export interface Action {
   data: {
     pokemon?: PokemonI;
     pokemonId?: number;
+    typeRelations?: TypeRelationsI;
   };
 }

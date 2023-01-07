@@ -26,10 +26,16 @@ export enum RelationKeys {
   X05 = 'x05',
   X025 = 'x025',
 }
+
+export type TypeRelationsI = {
+  [key in RelationKeys]: TypeEnum[];
+}
+
 export interface PokemonI {
   name: string;
   id: number;
   types: TypeEnum[];
   sprite: string;
-  typeRelations: { [key in RelationKeys]: TypeEnum[] };
+  typeRelations: TypeRelationsI;
+  abilities: string[];
 }

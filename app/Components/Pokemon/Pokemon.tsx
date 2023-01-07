@@ -9,17 +9,15 @@ import {
   StyledPokemonWrapper,
 } from './style';
 import Type from '../Type';
-import { useTeamContext } from '../../Context/hook';
 import { usePokemon } from './hook';
 
 type PokemonProps = {
   pokemon: PokemonI;
 };
 
-export const Pokemon = ({ pokemon: { name, types, id } }: PokemonProps) => {
-  const { onRemove, onHover, onBlur, isGrayscale, isFocus } = usePokemon({
-    id,
-  });
+export const Pokemon = ({ pokemon }: PokemonProps) => {
+  const { onRemove, onHover, onBlur, isGrayscale, isFocus, onAbilityChange } = usePokemon(pokemon);
+  const { types, name, abilities } = pokemon;
 
   return (
     <StyledPokemonWrapper
@@ -47,6 +45,9 @@ export const Pokemon = ({ pokemon: { name, types, id } }: PokemonProps) => {
             <Type id={type} key={type} />
           ))}
         </StyledPokemonTypesWrapper>
+        <select onChange={onAbilityChange}>
+          {abilities.map(ability => <option key={ability} value={ability} >{ability}</option>)}
+        </select>
       </StyledInfoWrapper>
     </StyledPokemonWrapper>
   );

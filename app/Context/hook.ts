@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react';
-import { PokemonI } from '../types';
+import { PokemonI, TypeRelationsI } from '../types';
 import { ActionTypes } from './model';
 import { TeamContext } from './TeamContext';
 
@@ -51,11 +51,21 @@ export const useTeamContext = () => {
     [dispatch]
   );
 
+  const setTypeRelations = useCallback(
+    (pokemonId: number, typeRelations: TypeRelationsI) =>
+      dispatch({
+        type: ActionTypes.SET_TYPE_RELATIONS,
+        data: { pokemonId, typeRelations },
+      }),
+    [dispatch]
+  );
+
   return {
     ...state,
     addPokemon,
     removePokemon,
     onFocus,
     onUnfocus,
+    setTypeRelations
   };
 };
