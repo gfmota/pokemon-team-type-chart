@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <meta name="description" content="Know your team weakness" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <>
         <Form />
         <MainStyled>
           <TeamStyled>
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           <TypeRelations />
         </MainStyled>
         <Footer />
-      </div>
+      </>
     </>
   );
 };

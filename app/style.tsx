@@ -56,6 +56,7 @@ export const TypeRelationsStyled = styled.div`
   display: flex;
   justify-content: space-evenly;
   margin: 0 25px 2.5em 25px;
+  height: 100%;
 
   @media (max-width: ${MOBILE_MAX_WIDTH}px) {
     position: fixed;

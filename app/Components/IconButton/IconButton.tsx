@@ -8,6 +8,6 @@ interface IconButtonProps
 
 export const IconButton = ({ IconComponent, ...props }: IconButtonProps) => (
   <StyledButton {...props}>
-    <IconComponent size={24} />
+    <IconComponent size={12} />
   </StyledButton>
 );

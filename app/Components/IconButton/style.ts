@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
   :hover {
     background-color: #e84f4f;
     > * {
-      transform: scale(1.05);
+      transform: scale(1.2);
     }
   }
 `;
