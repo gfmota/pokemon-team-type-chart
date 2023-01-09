@@ -32,7 +32,6 @@ export const Pokemon = ({ pokemon }: PokemonProps) => {
       <img
         src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
         alt="in game sprite"
-        width={100}
       />
       <StyledInfoWrapper>
         <div style={{ display: 'flex', alignItems: 'center' }}>

@@ -17,6 +17,7 @@ export const StyledPokemonWrapper = styled.div<StyledPokemonWrapperIProps>`
   -webkit-text-stroke-color: black;
 
   max-height: 250px;
+  min-height: 150px;
   padding: 10px;
   margin: 0 1.5em 1.5em 1.5em;
   gap: 5px;
