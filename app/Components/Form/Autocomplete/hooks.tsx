@@ -1,14 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
-import { getPokemonList } from '../../../Services';
 import { useFormContext } from '../Context/FormContext';
 
-export const useAutocomplete = () => {
+export const useAutocomplete = (pokemonList: { name: string, id: number }[]) => {
   const { inputValue, setInputValue, showAutocomplete } = useFormContext();
   const [autocompleteSuggestions, setAutocompleteSuggestions] = useState<
-    string[]
+    { name: string, id: number }[]
   >([]);
-  const { data: pokemonList } = useQuery('POKEMON_LIST', getPokemonList);
 
   useEffect(() => {
     if (inputValue.length === 0 || !pokemonList) {
@@ -19,13 +16,13 @@ export const useAutocomplete = () => {
     setAutocompleteSuggestions(
       pokemonList
         .filter(
-          (name) =>
-            name.indexOf(inputValue.toLowerCase()) > -1 && inputValue !== name
+          ({name}) =>
+          name.indexOf(inputValue.toLowerCase()) > -1 && inputValue !== name
         )
         .sort(
           (a, b) =>
-            a.indexOf(inputValue.toLowerCase()) -
-            b.indexOf(inputValue.toLowerCase())
+            a.name.indexOf(inputValue.toLowerCase()) -
+            b.name.indexOf(inputValue.toLowerCase())
         )
     );
   }, [inputValue, setAutocompleteSuggestions, pokemonList]);

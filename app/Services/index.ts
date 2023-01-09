@@ -32,10 +32,10 @@ export const getPokemon = async (input: string) => {
   return pokemon;
 };
 
-export const getPokemonList = async () => {
+export const getPokemonList = async (): Promise<{ name: string, id: number }[]> => {
   const response = await fetch(`${POKEAPI_ROUTE}pokemon?limit=1154`);
   const json = await response.json();
-  return json.results.map((pokemon: any) => pokemon.name) as string[];
+  return json.results.map(({ name, url }: {name: string, url: string}) => ({name, id: url.substring(34, url.length - 1)}));
 };
 
 export const getPokemonTypesRelations = async (types: TypeEnum[], options?: { immunityByAbility?: TypeEnum[] }) => {

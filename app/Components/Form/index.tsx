@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import React from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 
@@ -7,7 +6,11 @@ import Autocomplete from './Autocomplete';
 import { usePokemonInput } from './hooks';
 import { IconButton } from '../IconButton';
 
-const Form = () => {
+interface FormProps {
+  pokemonList: { name: string, id: number }[];
+};
+
+const Form = ({ pokemonList }: FormProps) => {
   const { onChange, onSubmit, inputValue, inputRef, isLoading, error } =
     usePokemonInput();
 
@@ -29,7 +32,7 @@ const Form = () => {
           error={!!error}
         />
         {error && <div style={{ color: 'red' }}>{error}</div>}
-        <Autocomplete />
+        <Autocomplete pokemonList={pokemonList} />
       </InputContainerStyled>
       <IconButton
         type="submit"
