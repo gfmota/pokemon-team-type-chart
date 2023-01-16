@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
+import { FlexBox } from '../../../../style';
 import { PokemonI, TypeEnum } from '../../../../types';
 import { capitalize } from '../../../../utils';
 import { IconButton } from '../../../IconButton';
@@ -27,11 +28,11 @@ export const Overview = ({ pokemon }: OverviewProps) => {
         />
         <div>
           <div>{capitalize(name)}</div>
-          <div style={{ display: 'flex' }}>
+          <FlexBox>
             {types.map((type: TypeEnum) => (
               <Type id={type} key={type} />
             ))}
-          </div>
+          </FlexBox>
           <AbilitySelector />
         </div>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AutocompleteStyled } from '../../../style';
+import { AutocompleteStyled, FlexBox } from '../../../style';
 import { useAutocomplete } from './hooks';
 import { StyledPokemonIcon } from './style';
 
@@ -16,13 +16,13 @@ const Autocomplete = ({ pokemonList }: AutocompleteProps) => {
   return (
     <AutocompleteStyled>
       {autocompleteSuggestions.map(({ name, id }) => (
-        <li
+        <FlexBox
           key={name}
           onClick={() => onClick(name)}
-          style={{ display: 'flex', alignItems: 'center' }}
+          alignItems='center'
         >
           <StyledPokemonIcon idNum={id} /> {name}
-        </li>
+        </FlexBox>
       ))}
     </AutocompleteStyled>
   );

@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { MOBILE_MAX_WIDTH } from '../../../../constants';
+import { FlexBox } from '../../../../style';
 
-export const StyledOverviewWrapper = styled.div`
+export const StyledOverviewWrapper = styled(FlexBox)`
   position: fixed;
   top: 0;
   left: 0;
@@ -15,7 +16,6 @@ export const StyledOverviewWrapper = styled.div`
 
   background-color: #807d7b;
 
-  display: flex;
   align-items: flex-start;
 
   @media (max-width: ${MOBILE_MAX_WIDTH}px) {

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
+import { FlexColumn } from '../../style';
 
-export const InputContainerStyled = styled.div`
+export const InputContainerStyled = styled(FlexColumn)`
   width: 30%;
   min-width: 20em;
-  display: flex;
-  flex-direction: column;
   margin-right: 4px;
 `;
 

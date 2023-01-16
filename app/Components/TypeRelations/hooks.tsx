@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTeamContext } from '../../Context/hook';
+import { FlexBox } from '../../style';
 import { PokemonI, RelationKeys, TypeEnum } from '../../types';
 import Type from '../Type';
 import { TypeRelation } from './model';
@@ -49,7 +50,7 @@ export const useTypeRelations = () => {
 
   const renderTypesList = (types: any[]) =>
     types.map(({ type, counter, onFocus }: TypeRelation) => (
-      <div key={type} style={{ display: 'flex', alignItems: 'flex-end' }}>
+      <FlexBox key={type} alignItems='flex-end' >
         <Type
           id={type}
           selected={onFocus}
@@ -67,7 +68,7 @@ export const useTypeRelations = () => {
         >
           {counter}
         </div>
-      </div>
+      </FlexBox>
     ));
 
   return {

@@ -1,18 +1,43 @@
 import styled from 'styled-components';
 import { MOBILE_MAX_WIDTH, TABLET_MAX_WIDTH } from './constants';
 
+interface FlexBoxProps {
+  direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
+  justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  alignItems?: 'stretch' | 'flex-start' | 'flex-end' | 'center' | 'baseline';
+  gap?: number;
+};
+
+export const FlexBox = styled.div<FlexBoxProps>`
+  display: flex;
+  ${({ direction }) => direction && `flex-direction: ${direction}`};
+  ${({ wrap }) => wrap && `flex-wrap: ${wrap}`};
+  ${({ justifyContent }) => justifyContent && `justify-content: ${justifyContent}`};
+  ${({ alignItems }) => alignItems && `align-items: ${alignItems}`};
+  ${({ gap }) => gap && `gap: ${gap}px`};
+`
+
+export const FlexColumn = styled.div<Omit<FlexBoxProps, 'direction'>>`
+  display: flex;
+  flex-direction: column;
+  ${({ wrap }) => wrap && `flex-wrap: ${wrap}`};
+  ${({ justifyContent }) => justifyContent && `justify-content: ${justifyContent}`};
+  ${({ alignItems }) => alignItems && `align-items: ${alignItems}`};
+  ${({ gap }) => gap && `gap: ${gap}px`};
+`
+
 type TypeStyledIProps = {
   backgroundColor: string;
   selected: boolean;
   grayscale: boolean;
 };
 
-export const TypeStyled = styled.div<TypeStyledIProps>`
+export const TypeStyled = styled(FlexBox)<TypeStyledIProps>`
   background-color: ${(props) => props.backgroundColor};
   border-radius: 100%;
   width: 48px;
   height: 48px;
-  display: flex;
   justify-content: center;
   align-items: center;
   margin: 2px 0;
@@ -52,8 +77,7 @@ export const MainStyled = styled.div`
   }
 `;
 
-export const TypeRelationsStyled = styled.div`
-  display: flex;
+export const TypeRelationsStyled = styled(FlexBox)`
   justify-content: space-evenly;
   margin: 0 25px 2.5em 25px;
   height: 100%;
@@ -105,7 +129,7 @@ export const AutocompleteStyled = styled.ul`
   }
 `;
 
-export const FooterStyled = styled.div`
+export const FooterStyled = styled(FlexBox)`
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -113,6 +137,5 @@ export const FooterStyled = styled.div`
 
   background-color: #333333;
 
-  display: flex;
   justify-content: end;
 `;

@@ -15,6 +15,7 @@ import { capitalize } from '../../utils';
 import { Overview } from './components/Overview/Overview';
 import PokemonContextProvider from './Context/PokemonContext';
 import { AbilitySelector } from './components/AbilitySelector/AbilitySelector';
+import { FlexBox } from '../../style';
 
 type PokemonProps = {
   pokemon: PokemonI;
@@ -41,12 +42,15 @@ export const Pokemon = ({ pokemon }: PokemonProps) => {
         isFocus={isFocus}
         type={types[0]}
       >
+        <FlexBox alignItems='center' justifyContent='center' style={{ height: '100%', width: '100px' }}>
         <img
           src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
           alt="in game sprite"
+          style={{ maxWidth: '100%', maxHeight: '100%'}}
         />
+        </FlexBox>
         <StyledInfoWrapper>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <FlexBox alignItems='center' >
             <div>{capitalize(name)}</div>
             <StyledIconButton title={`Overview`} onClick={onOverview}>
               <GiMagnifyingGlass size={16} />
@@ -58,7 +62,7 @@ export const Pokemon = ({ pokemon }: PokemonProps) => {
             >
               <FiTrash2 size={16} />
             </StyledIconButton>
-          </div>
+          </FlexBox>
           <StyledPokemonTypesWrapper>
             {types.map((type: TypeEnum) => (
               <Type id={type} key={type} />

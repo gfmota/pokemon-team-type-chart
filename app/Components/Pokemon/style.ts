@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { TypesBackgroundColors } from '../../constants';
+import { FlexBox, FlexColumn } from '../../style';
 import { TypeEnum } from '../../types';
 
 type StyledPokemonWrapperIProps = {
@@ -8,7 +9,7 @@ type StyledPokemonWrapperIProps = {
   type: TypeEnum;
 };
 
-export const StyledPokemonWrapper = styled.div<StyledPokemonWrapperIProps>`
+export const StyledPokemonWrapper = styled(FlexBox)<StyledPokemonWrapperIProps>`
   border-radius: 1em;
   background-color: ${({ type }) =>
     TypesBackgroundColors[type].background || '#807d7b'};
@@ -22,7 +23,6 @@ export const StyledPokemonWrapper = styled.div<StyledPokemonWrapperIProps>`
   margin: 0 1.5em 1.5em 1.5em;
   gap: 5px;
 
-  display: flex;
   align-items: center;
 
   transition: 0.7s;
@@ -41,9 +41,7 @@ export const StyledPokemonWrapper = styled.div<StyledPokemonWrapperIProps>`
   `}
 `;
 
-export const StyledInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+export const StyledInfoWrapper = styled(FlexColumn)`
   align-items: center;
   justify-content: space-evenly;
 
@@ -76,8 +74,7 @@ export const StyledIconButton = styled.button<StyledIconButtonProps>`
   }
 `;
 
-export const StyledPokemonTypesWrapper = styled.div`
-  display: flex;
+export const StyledPokemonTypesWrapper = styled(FlexBox)`
   justify-content: space-evenly;
   width: 100%;
 `;
