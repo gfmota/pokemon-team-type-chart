@@ -4,28 +4,36 @@ import { MOBILE_MAX_WIDTH, TABLET_MAX_WIDTH } from './constants';
 interface FlexBoxProps {
   direction?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  justifyContent?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  justifyContent?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around'
+    | 'space-evenly';
   alignItems?: 'stretch' | 'flex-start' | 'flex-end' | 'center' | 'baseline';
   gap?: number;
-};
+}
 
 export const FlexBox = styled.div<FlexBoxProps>`
   display: flex;
   ${({ direction }) => direction && `flex-direction: ${direction}`};
   ${({ wrap }) => wrap && `flex-wrap: ${wrap}`};
-  ${({ justifyContent }) => justifyContent && `justify-content: ${justifyContent}`};
+  ${({ justifyContent }) =>
+    justifyContent && `justify-content: ${justifyContent}`};
   ${({ alignItems }) => alignItems && `align-items: ${alignItems}`};
   ${({ gap }) => gap && `gap: ${gap}px`};
-`
+`;
 
 export const FlexColumn = styled.div<Omit<FlexBoxProps, 'direction'>>`
   display: flex;
   flex-direction: column;
   ${({ wrap }) => wrap && `flex-wrap: ${wrap}`};
-  ${({ justifyContent }) => justifyContent && `justify-content: ${justifyContent}`};
+  ${({ justifyContent }) =>
+    justifyContent && `justify-content: ${justifyContent}`};
   ${({ alignItems }) => alignItems && `align-items: ${alignItems}`};
   ${({ gap }) => gap && `gap: ${gap}px`};
-`
+`;
 
 type TypeStyledIProps = {
   backgroundColor: string;

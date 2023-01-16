@@ -42,15 +42,19 @@ export const Pokemon = ({ pokemon }: PokemonProps) => {
         isFocus={isFocus}
         type={types[0]}
       >
-        <FlexBox alignItems='center' justifyContent='center' style={{ height: '100%', width: '100px' }}>
-        <img
-          src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
-          alt="in game sprite"
-          style={{ maxWidth: '100%', maxHeight: '100%'}}
-        />
+        <FlexBox
+          alignItems="center"
+          justifyContent="center"
+          style={{ height: '100%', width: '100px' }}
+        >
+          <img
+            src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
+            alt="in game sprite"
+            style={{ maxWidth: '100%', maxHeight: '100%' }}
+          />
         </FlexBox>
         <StyledInfoWrapper>
-          <FlexBox alignItems='center' >
+          <FlexBox alignItems="center">
             <div>{capitalize(name)}</div>
             <StyledIconButton title={`Overview`} onClick={onOverview}>
               <GiMagnifyingGlass size={16} />

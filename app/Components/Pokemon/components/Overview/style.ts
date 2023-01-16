@@ -15,6 +15,10 @@ export const StyledOverviewWrapper = styled(FlexBox)`
   border-radius: 2em;
 
   background-color: #807d7b;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  font-size: 1.5em;
+  font-weight: bold;
 
   align-items: flex-start;
 

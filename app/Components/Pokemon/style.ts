@@ -13,7 +13,6 @@ export const StyledPokemonWrapper = styled(FlexBox)<StyledPokemonWrapperIProps>`
   border-radius: 1em;
   background-color: ${({ type }) =>
     TypesBackgroundColors[type].background || '#807d7b'};
-  color: white;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 

@@ -16,11 +16,7 @@ const Autocomplete = ({ pokemonList }: AutocompleteProps) => {
   return (
     <AutocompleteStyled>
       {autocompleteSuggestions.map(({ name, id }) => (
-        <FlexBox
-          key={name}
-          onClick={() => onClick(name)}
-          alignItems='center'
-        >
+        <FlexBox key={name} onClick={() => onClick(name)} alignItems="center">
           <StyledPokemonIcon idNum={id} /> {name}
         </FlexBox>
       ))}

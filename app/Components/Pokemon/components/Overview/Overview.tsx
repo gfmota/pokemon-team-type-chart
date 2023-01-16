@@ -5,6 +5,7 @@ import { PokemonI, TypeEnum } from '../../../../types';
 import { capitalize } from '../../../../utils';
 import { IconButton } from '../../../IconButton';
 import Type from '../../../Type';
+import TypeRelations from '../../../TypeRelations';
 import { AbilitySelector } from '../AbilitySelector/AbilitySelector';
 import { useOverview } from './hook';
 import { StyledOverviewWrapper, StyledCanva } from './style';
@@ -21,12 +22,23 @@ export const Overview = ({ pokemon }: OverviewProps) => {
     <>
       <StyledCanva onClick={onClose} />
       <StyledOverviewWrapper>
-        <img
-          src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
-          alt="in game sprite"
-          style={{ maxWidth: '100%' }}
-        />
-        <div>
+        <FlexBox
+          alignItems="center"
+          justifyContent="center"
+          style={{ height: '100%', width: '40%' }}
+        >
+          <img
+            src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
+            alt="in game sprite"
+            width="80%"
+            style={{ maxWidth: '100%', maxHeight: '100%' }}
+          />
+        </FlexBox>
+        <div
+          style={{
+            flexGrow: 1,
+          }}
+        >
           <div>{capitalize(name)}</div>
           <FlexBox>
             {types.map((type: TypeEnum) => (

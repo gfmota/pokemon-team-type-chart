@@ -50,7 +50,7 @@ export const useTypeRelations = () => {
 
   const renderTypesList = (types: any[]) =>
     types.map(({ type, counter, onFocus }: TypeRelation) => (
-      <FlexBox key={type} alignItems='flex-end' >
+      <FlexBox key={type} alignItems="flex-end">
         <Type
           id={type}
           selected={onFocus}
