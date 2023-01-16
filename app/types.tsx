@@ -29,7 +29,7 @@ export enum RelationKeys {
 
 export type TypeRelationsI = {
   [key in RelationKeys]: TypeEnum[];
-}
+};
 
 export interface PokemonI {
   name: string;

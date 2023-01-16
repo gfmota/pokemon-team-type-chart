@@ -7,8 +7,8 @@ import { usePokemonInput } from './hooks';
 import { IconButton } from '../IconButton';
 
 interface FormProps {
-  pokemonList: { name: string, id: number }[];
-};
+  pokemonList: { name: string; id: number }[];
+}
 
 const Form = ({ pokemonList }: FormProps) => {
   const { onChange, onSubmit, inputValue, inputRef, isLoading, error } =

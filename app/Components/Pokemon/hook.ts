@@ -1,17 +1,16 @@
-import { useCallback, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useCallback } from 'react';
 import { useTeamContext } from '../../Context/hook';
-import { getPokemonTypesRelations } from '../../Services';
-import { PokemonI, TypeEnum } from '../../types';
-import { TYPE_IMMUNITY_ABILITIES } from './constants';
+import { PokemonI } from '../../types';
 
-export const usePokemon = ({ id, types, abilities }: PokemonI) => {
-  const { pokemonOnFocus, removePokemon, onFocus, onUnfocus, setTypeRelations } =
-    useTeamContext();
-  const [immunityByAbility, setImmunityByAbility] = useState<TypeEnum[]|undefined>(TYPE_IMMUNITY_ABILITIES[abilities[0]]);
-  useQuery([...types, immunityByAbility && `immunity to ${immunityByAbility.join()}`], () => getPokemonTypesRelations(types, { immunityByAbility }), {
-    onSuccess: (data) => setTypeRelations(id, data),
-  })
+export const usePokemon = ({ id }: PokemonI) => {
+  const {
+    pokemonOnFocus,
+    removePokemon,
+    onFocus,
+    onUnfocus,
+    openOverview,
+    overviewPokemonID,
+  } = useTeamContext();
   const hasFocus = !!pokemonOnFocus;
   const isFocus = pokemonOnFocus === id;
 
@@ -19,16 +18,18 @@ export const usePokemon = ({ id, types, abilities }: PokemonI) => {
 
   const onHover = useCallback(() => onFocus(id), [onFocus, id]);
 
-  const onAbilityChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) =>
-    setImmunityByAbility(TYPE_IMMUNITY_ABILITIES[e.target.value])
-  , [setImmunityByAbility]);
+  const onOverview = useCallback(() => {
+    openOverview(id);
+    onUnfocus();
+  }, [openOverview, id]);
 
   return {
     onRemove,
+    onOverview,
     onHover,
     onBlur: onUnfocus,
     isGrayscale: hasFocus && !isFocus,
     isFocus,
-    onAbilityChange
+    overviewPokemonID,
   };
 };

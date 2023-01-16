@@ -1,4 +1,4 @@
-import { RelationKeys, TypeEnum, TypeRelationsI } from '../types';
+import { TypeRelationsI } from '../types';
 import { Action, ActionTypes, State } from './model';
 
 export const reducer = (state: State, action: Action): State => {
@@ -28,13 +28,29 @@ export const reducer = (state: State, action: Action): State => {
       };
     case ActionTypes.SET_TYPE_RELATIONS:
       if (!action.data.pokemonId) throw new Error('Pokemon ID undefined');
-      if (!action.data.typeRelations) throw new Error('Type Relations undefined');
+      if (!action.data.typeRelations)
+        throw new Error('Type Relations undefined');
       return {
         ...state,
-        team: state.team.map(pokemon => pokemon.id !== action.data.pokemonId ? pokemon : {
-          ...pokemon,
-          typeRelations: action.data.typeRelations as TypeRelationsI,
-        }),
+        team: state.team.map((pokemon) =>
+          pokemon.id !== action.data.pokemonId
+            ? pokemon
+            : {
+                ...pokemon,
+                typeRelations: action.data.typeRelations as TypeRelationsI,
+              }
+        ),
+      };
+    case ActionTypes.OPEN_OVERVIEW:
+      if (!action.data.pokemonId) throw new Error('Pokemon ID undefined');
+      return {
+        ...state,
+        overviewPokemonID: action.data.pokemonId,
+      };
+    case ActionTypes.CLOSE_OVERVIEW:
+      return {
+        ...state,
+        overviewPokemonID: undefined,
       };
     default:
       throw new Error('Action not found');

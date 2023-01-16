@@ -1,4 +1,4 @@
-import { PokemonI, RelationKeys, TypeEnum, TypeRelationsI } from "../types";
+import { PokemonI, RelationKeys, TypeEnum, TypeRelationsI } from '../types';
 
 const POKEAPI_ROUTE = 'https://pokeapi.co/api/v2/';
 
@@ -11,7 +11,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
     x2: [],
     x4: [],
     x05: [],
-    x025: []
+    x025: [],
   } as TypeRelationsI;
 
   return {
@@ -20,7 +20,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
     types,
     sprite,
     typeRelations,
-    abilities
+    abilities,
   };
 };
 
@@ -32,17 +32,25 @@ export const getPokemon = async (input: string) => {
   return pokemon;
 };
 
-export const getPokemonList = async (): Promise<{ name: string, id: number }[]> => {
+export const getPokemonList = async (): Promise<
+  { name: string; id: number }[]
+> => {
   const response = await fetch(`${POKEAPI_ROUTE}pokemon?limit=1154`);
   const json = await response.json();
-  return json.results.map(({ name, url }: {name: string, url: string}) => ({name, id: url.substring(34, url.length - 1)}));
+  return json.results.map(({ name, url }: { name: string; url: string }) => ({
+    name,
+    id: url.substring(34, url.length - 1),
+  }));
 };
 
-export const getPokemonTypesRelations = async (types: TypeEnum[], options?: { immunityByAbility?: TypeEnum[] }) => {
+export const getPokemonTypesRelations = async (
+  types: TypeEnum[],
+  options?: { immunityByAbility?: TypeEnum[] }
+) => {
   const typeRelations: TypeRelationsI = {
     x4: [],
     x025: [],
-    ...(await getTypeRelations(types[0]))
+    ...(await getTypeRelations(types[0])),
   };
 
   if (types[1]) {
@@ -84,16 +92,18 @@ export const getPokemonTypesRelations = async (types: TypeEnum[], options?: { im
   }
 
   if (options?.immunityByAbility) {
-    options.immunityByAbility.forEach(type => {
+    options.immunityByAbility.forEach((type) => {
       if (typeRelations.x0.includes(type)) return;
 
-      (Object.keys(typeRelations) as RelationKeys[]).forEach(relation => {
+      (Object.keys(typeRelations) as RelationKeys[]).forEach((relation) => {
         if (relation === RelationKeys.X0) return;
         if (typeRelations[relation].includes(type))
-          typeRelations[relation] = typeRelations[relation].filter((t) => t !== type);
-      })
+          typeRelations[relation] = typeRelations[relation].filter(
+            (t) => t !== type
+          );
+      });
       typeRelations.x0.push(type);
-    })
+    });
   }
 
   return typeRelations;
@@ -108,7 +118,8 @@ export const getTypeRelations = async (type: TypeEnum) => {
       no_damage_from: noDamageFrom,
     },
   } = await response.json();
-  const typesNameMap = (types: { name: TypeEnum }[]) => types.map(({ name }) => name);
+  const typesNameMap = (types: { name: TypeEnum }[]) =>
+    types.map(({ name }) => name);
 
   return {
     x2: typesNameMap(doubleDamageFrom),

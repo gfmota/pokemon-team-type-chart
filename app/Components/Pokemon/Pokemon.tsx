@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiTrash2 } from 'react-icons/fi';
+import { GiMagnifyingGlass } from 'react-icons/gi';
 
 import { PokemonI, TypeEnum } from '../../types';
 import {
@@ -10,45 +11,63 @@ import {
 } from './style';
 import Type from '../Type';
 import { usePokemon } from './hook';
+import { capitalize } from '../../utils';
+import { Overview } from './components/Overview/Overview';
+import PokemonContextProvider from './Context/PokemonContext';
+import { AbilitySelector } from './components/AbilitySelector/AbilitySelector';
 
 type PokemonProps = {
   pokemon: PokemonI;
 };
 
-const capitalize = (name: string) => name.split('-').map((str) => `${str.charAt(0).toUpperCase()}${str.slice(1)}`).join(' ');
-
 export const Pokemon = ({ pokemon }: PokemonProps) => {
-  const { onRemove, onHover, onBlur, isGrayscale, isFocus, onAbilityChange } = usePokemon(pokemon);
-  const { types, name, abilities } = pokemon;
+  const {
+    onRemove,
+    onHover,
+    onBlur,
+    isGrayscale,
+    isFocus,
+    onOverview,
+    overviewPokemonID,
+  } = usePokemon(pokemon);
+  const { types, name, id } = pokemon;
 
   return (
-    <StyledPokemonWrapper
-      onMouseEnter={onHover}
-      onMouseLeave={onBlur}
-      grayscale={isGrayscale}
-      isFocus={isFocus}
-      type={types[0]}
-    >
-      <img
-        src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
-        alt="in game sprite"
-      />
-      <StyledInfoWrapper>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <div>{capitalize(name)}</div>
-          <StyledIconButton title={`Remove ${capitalize(name)}`} onClick={onRemove}>
-            <FiTrash2 size={16} />
-          </StyledIconButton>
-        </div>
-        <StyledPokemonTypesWrapper>
-          {types.map((type: TypeEnum) => (
-            <Type id={type} key={type} />
-          ))}
-        </StyledPokemonTypesWrapper>
-        <select onChange={onAbilityChange}>
-          {abilities.map(ability => <option key={ability} value={ability} >{capitalize(ability)}</option>)}
-        </select>
-      </StyledInfoWrapper>
-    </StyledPokemonWrapper>
+    <PokemonContextProvider pokemon={pokemon}>
+      <StyledPokemonWrapper
+        onMouseEnter={onHover}
+        onMouseLeave={onBlur}
+        grayscale={isGrayscale}
+        isFocus={isFocus}
+        type={types[0]}
+      >
+        <img
+          src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
+          alt="in game sprite"
+        />
+        <StyledInfoWrapper>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div>{capitalize(name)}</div>
+            <StyledIconButton title={`Overview`} onClick={onOverview}>
+              <GiMagnifyingGlass size={16} />
+            </StyledIconButton>
+            <StyledIconButton
+              title={`Remove ${capitalize(name)}`}
+              onClick={onRemove}
+              color="#ff5757"
+            >
+              <FiTrash2 size={16} />
+            </StyledIconButton>
+          </div>
+          <StyledPokemonTypesWrapper>
+            {types.map((type: TypeEnum) => (
+              <Type id={type} key={type} />
+            ))}
+          </StyledPokemonTypesWrapper>
+          <AbilitySelector />
+        </StyledInfoWrapper>
+      </StyledPokemonWrapper>
+      {id === overviewPokemonID && <Overview pokemon={pokemon} />}
+    </PokemonContextProvider>
   );
 };

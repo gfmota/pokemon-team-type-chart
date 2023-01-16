@@ -5,4 +5,5 @@ body {
   height: 100vh;
   font-family: 'Bungee', cursive;
   font-family: 'Poppins', sans-serif;
+  overflow: hidden;
 }

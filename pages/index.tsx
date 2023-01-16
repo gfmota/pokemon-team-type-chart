@@ -10,10 +10,10 @@ import { MainStyled, TeamStyled } from '../app/style';
 import { PokemonI } from '../app/types';
 
 interface HomeProps {
-  pokemonList: { name: string, id: number }[];
+  pokemonList: { name: string; id: number }[];
 }
 
-const Home: NextPage<HomeProps> = ({pokemonList}) => {
+const Home: NextPage<HomeProps> = ({ pokemonList }) => {
   const { team } = useTeamContext();
 
   return (
@@ -39,10 +39,9 @@ const Home: NextPage<HomeProps> = ({pokemonList}) => {
   );
 };
 
-
 export const getStaticProps = async () => {
   const pokemonList = await getPokemonList();
-  return { props: {pokemonList}};
-}
+  return { props: { pokemonList } };
+};
 
 export default Home;

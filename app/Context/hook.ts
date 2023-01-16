@@ -60,12 +60,32 @@ export const useTeamContext = () => {
     [dispatch]
   );
 
+  const openOverview = useCallback(
+    (pokemonId: number) =>
+      dispatch({
+        type: ActionTypes.OPEN_OVERVIEW,
+        data: { pokemonId },
+      }),
+    [dispatch]
+  );
+
+  const closeOverview = useCallback(
+    () =>
+      dispatch({
+        type: ActionTypes.CLOSE_OVERVIEW,
+        data: {},
+      }),
+    [dispatch]
+  );
+
   return {
     ...state,
     addPokemon,
     removePokemon,
     onFocus,
     onUnfocus,
-    setTypeRelations
+    setTypeRelations,
+    openOverview,
+    closeOverview,
   };
 };

@@ -4,10 +4,10 @@ import { useAutocomplete } from './hooks';
 import { StyledPokemonIcon } from './style';
 
 interface AutocompleteProps {
-  pokemonList: { name: string, id: number }[];
-};
+  pokemonList: { name: string; id: number }[];
+}
 
-const Autocomplete = ({ pokemonList }:AutocompleteProps) => {
+const Autocomplete = ({ pokemonList }: AutocompleteProps) => {
   const { autocompleteSuggestions, onClick, showAutocomplete } =
     useAutocomplete(pokemonList);
 
@@ -16,7 +16,11 @@ const Autocomplete = ({ pokemonList }:AutocompleteProps) => {
   return (
     <AutocompleteStyled>
       {autocompleteSuggestions.map(({ name, id }) => (
-        <li key={name} onClick={() => onClick(name)} style={{display: 'flex', alignItems: 'center'}}>
+        <li
+          key={name}
+          onClick={() => onClick(name)}
+          style={{ display: 'flex', alignItems: 'center' }}
+        >
           <StyledPokemonIcon idNum={id} /> {name}
         </li>
       ))}

@@ -3,6 +3,7 @@ import { PokemonI, TypeRelationsI } from '../types';
 export interface State {
   team: PokemonI[];
   pokemonOnFocus?: number;
+  overviewPokemonID?: number;
 }
 
 export enum ActionTypes {
@@ -11,6 +12,8 @@ export enum ActionTypes {
   FOCUS_POKEMON = 'FOCUS_POKEMON',
   UNFOCUS = 'UNFOCUS',
   SET_TYPE_RELATIONS = 'SET_TYPE_RELATIONS',
+  OPEN_OVERVIEW = 'OPEN_OVERVIEW',
+  CLOSE_OVERVIEW = 'CLOSE_OVERVIEW',
 }
 
 export interface Action {

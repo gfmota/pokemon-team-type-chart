@@ -52,10 +52,14 @@ export const StyledInfoWrapper = styled.div`
   font-weight: bold;
 `;
 
-export const StyledIconButton = styled.button`
-  border: none;
-  color: #ff5757;
+interface StyledIconButtonProps {
+  color?: string;
+}
+
+export const StyledIconButton = styled.button<StyledIconButtonProps>`
+  ${({ color }) => color && `color: ${color};`}
   background-color: inherit;
+  border: none;
   cursor: pointer;
   margin-left: 0.2em;
   transition: 0.5s;
@@ -65,7 +69,7 @@ export const StyledIconButton = styled.button`
   }
 
   :hover {
-    color: #e84f4f;
+    filter: brightness(0.85);
     > * {
       transform: scale(1.1);
     }
@@ -76,4 +80,10 @@ export const StyledPokemonTypesWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+`;
+
+export const StyledSelect = styled.select`
+  width: 100%;
+  border-radius: 0.5em;
+  padding: 0.5em 0.8em;
 `;
