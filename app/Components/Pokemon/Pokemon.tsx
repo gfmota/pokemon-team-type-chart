@@ -18,7 +18,7 @@ import { FlexBox } from '../../style';
 
 export interface PokemonProps {
   pokemon: PokemonI;
-};
+}
 
 export const Pokemon: React.FC<PokemonProps> = ({ pokemon }) => {
   const {

@@ -15,7 +15,7 @@ export const Type: React.FC<TypeProps> = ({
   id,
   selected,
   grayscale,
-  size,
+  size = 48,
 }) => (
   <TypeStyled
     backgroundColor={TypesBackgroundColors[id].main}
@@ -25,8 +25,8 @@ export const Type: React.FC<TypeProps> = ({
   >
     <Image
       src={`/typeIcons/${id}.svg`}
-      width={18}
-      height={18}
+      width={size / 2}
+      height={size / 2}
       alt={id as any}
     />
   </TypeStyled>

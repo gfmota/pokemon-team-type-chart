@@ -5,14 +5,14 @@ type TypeStyledIProps = {
   backgroundColor: string;
   selected: boolean;
   grayscale: boolean;
-  size?: number;
+  size: number;
 };
 
 export const TypeStyled = styled(FlexBox)<TypeStyledIProps>`
   background-color: ${(props) => props.backgroundColor};
   border-radius: 100%;
-  width: ${({ size }) => size || 48}px;
-  height: ${({ size }) => size || 48}px;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
   justify-content: center;
   align-items: center;
   margin: 2px 0;
