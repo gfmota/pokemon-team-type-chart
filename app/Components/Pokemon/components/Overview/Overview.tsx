@@ -5,7 +5,7 @@ import { PokemonI, TypeEnum } from '../../../../types';
 import { capitalize } from '../../../../utils';
 import { IconButton } from '../../../IconButton';
 import Type from '../../../Type';
-import { AbilitySelector } from '../';
+import { AbilitySelector, InGameSprite } from '../';
 import { useOverview } from './hook';
 import { StyledOverviewWrapper, StyledCanva } from './style';
 import { MoveSelector } from '../MoveSelector/MoveSelector';
@@ -32,12 +32,7 @@ export const Overview = ({ pokemon }: OverviewProps) => {
               <Type id={type} key={type} />
             ))}
           </FlexBox>
-          <img
-            src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
-            alt="in game sprite"
-            width="80%"
-            style={{ maxWidth: '100%', maxHeight: '100%' }}
-          />
+          <InGameSprite pokemonName={name} width="80%" />
         </FlexColumn>
         <div
           style={{

@@ -13,7 +13,7 @@ import Type from '../Type';
 import { usePokemon } from './hook';
 import { capitalize } from '../../utils';
 import PokemonContextProvider from './Context/PokemonContext';
-import { AbilitySelector, Overview } from './components';
+import { AbilitySelector, Overview, InGameSprite } from './components';
 import { FlexBox } from '../../style';
 
 type PokemonProps = {
@@ -46,11 +46,7 @@ export const Pokemon = ({ pokemon }: PokemonProps) => {
           justifyContent="center"
           style={{ height: '100%', width: '100px' }}
         >
-          <img
-            src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
-            alt="in game sprite"
-            style={{ maxWidth: '100%', maxHeight: '100%' }}
-          />
+          <InGameSprite pokemonName={name} />
         </FlexBox>
         <StyledInfoWrapper>
           <FlexBox alignItems="center">
