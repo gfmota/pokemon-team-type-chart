@@ -3,7 +3,7 @@ import { AutocompleteStyled, FlexBox } from '../../../style';
 import { useAutocomplete } from './hooks';
 import { StyledPokemonIcon } from './style';
 
-interface AutocompleteProps {
+export interface AutocompleteProps {
   pokemonList: { name: string; id: number }[];
 }
 
