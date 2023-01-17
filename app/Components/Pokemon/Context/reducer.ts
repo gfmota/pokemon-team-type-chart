@@ -8,6 +8,12 @@ export const reducer = (state: State, action: Action): State => {
         ...state,
         ability: action.data.ability,
       };
+    case ActionTypes.SET_MOVE:
+      if (!action.data.moves) throw new Error('Moves undefined');
+      return {
+        ...state,
+        moves: action.data.moves,
+      };
     default:
       throw new Error('Action not found');
   }

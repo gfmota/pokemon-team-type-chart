@@ -1,13 +1,14 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
-import { FlexBox } from '../../../../style';
+import { FlexBox, FlexColumn } from '../../../../style';
 import { PokemonI, TypeEnum } from '../../../../types';
 import { capitalize } from '../../../../utils';
 import { IconButton } from '../../../IconButton';
 import Type from '../../../Type';
-import { AbilitySelector } from '../AbilitySelector/AbilitySelector';
+import { AbilitySelector } from '../';
 import { useOverview } from './hook';
 import { StyledOverviewWrapper, StyledCanva } from './style';
+import { MoveSelector } from '../MoveSelector/MoveSelector';
 
 interface OverviewProps {
   pokemon: PokemonI;
@@ -21,30 +22,36 @@ export const Overview = ({ pokemon }: OverviewProps) => {
     <>
       <StyledCanva onClick={onClose} />
       <StyledOverviewWrapper>
-        <FlexBox
+        <FlexColumn
           alignItems="center"
-          justifyContent="center"
           style={{ height: '100%', width: '40%' }}
         >
+          <FlexBox style={{ fontSize: '2em' }}>
+            {capitalize(name)}
+            {types.map((type: TypeEnum) => (
+              <Type id={type} key={type} />
+            ))}
+          </FlexBox>
           <img
             src={`https://play.pokemonshowdown.com/sprites/ani/${name}.gif`}
             alt="in game sprite"
             width="80%"
             style={{ maxWidth: '100%', maxHeight: '100%' }}
           />
-        </FlexBox>
+        </FlexColumn>
         <div
           style={{
             flexGrow: 1,
           }}
         >
-          <div>{capitalize(name)}</div>
-          <FlexBox>
-            {types.map((type: TypeEnum) => (
-              <Type id={type} key={type} />
-            ))}
+          <FlexBox gap={5}>
+            Ability:
+            <AbilitySelector />
           </FlexBox>
-          <AbilitySelector />
+          Moves:
+          {[0, 1, 2, 3].map((ind) => (
+            <MoveSelector index={ind} />
+          ))}
         </div>
 
         <IconButton

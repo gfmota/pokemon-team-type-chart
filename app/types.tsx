@@ -38,4 +38,8 @@ export interface PokemonI {
   sprite: string;
   typeRelations: TypeRelationsI;
   abilities: string[];
+  moves: {
+    name: string;
+    url: string;
+  }[];
 }

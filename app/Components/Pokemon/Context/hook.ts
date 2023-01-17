@@ -38,8 +38,23 @@ export const usePokemonContext = () => {
     [dispatch]
   );
 
+  const setMove = useCallback(
+    (index: number, moveName: string) => {
+      const newMoves = state.moves;
+      newMoves[index] = moveName;
+      dispatch({
+        type: ActionTypes.SET_MOVE,
+        data: { moves: newMoves },
+      });
+    },
+    [dispatch]
+  );
+
+  console.log(state.moves);
+
   return {
     ...state,
     setAbility,
+    setMove,
   };
 };

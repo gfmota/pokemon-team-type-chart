@@ -1,3 +1,3 @@
-import { DynamicTypeRelations as TypeRelations } from "./dynamic";
+import { DynamicTypeRelations as TypeRelations } from './dynamic';
 
 export default TypeRelations;

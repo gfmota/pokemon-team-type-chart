@@ -6,6 +6,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   const types = json.types.map((typeObj: any) => typeObj.type.name);
   const sprite = json.sprites.front_default;
   const abilities = json.abilities.map((ability: any) => ability.ability.name);
+  const moves = json.moves.map(({ move }: any) => move);
   const typeRelations = {
     x0: [],
     x2: [],
@@ -21,6 +22,7 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
     sprite,
     typeRelations,
     abilities,
+    moves,
   };
 };
 

@@ -17,7 +17,7 @@ export const StyledOverviewWrapper = styled(FlexBox)`
   background-color: #807d7b;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: bold;
 
   align-items: flex-start;
