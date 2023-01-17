@@ -35,35 +35,6 @@ export const FlexColumn = styled.div<Omit<FlexBoxProps, 'direction'>>`
   ${({ gap }) => gap && `gap: ${gap}px`};
 `;
 
-type TypeStyledIProps = {
-  backgroundColor: string;
-  selected: boolean;
-  grayscale: boolean;
-};
-
-export const TypeStyled = styled(FlexBox)<TypeStyledIProps>`
-  background-color: ${(props) => props.backgroundColor};
-  border-radius: 100%;
-  width: 48px;
-  height: 48px;
-  justify-content: center;
-  align-items: center;
-  margin: 2px 0;
-
-  transition: 0.7s;
-  ${({ grayscale }) =>
-    grayscale &&
-    `
-    filter: grayscale(1);
-  `}
-
-  ${({ selected, backgroundColor }) =>
-    selected &&
-    `
-    box-shadow: 0px 0px 12px 4px ${backgroundColor};
-  `}
-`;
-
 export const TeamStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);

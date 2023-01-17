@@ -1,4 +1,4 @@
-import { PokemonI, TypeRelationsI } from '../types';
+import { PokemonI, TypeRelationsI } from '../model';
 
 export interface State {
   team: PokemonI[];

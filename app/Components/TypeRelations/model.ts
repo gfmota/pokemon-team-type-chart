@@ -1,4 +1,4 @@
-import { TypeEnum } from '../../types';
+import { TypeEnum } from '../../model';
 
 export interface TypeRelation {
   type: TypeEnum;

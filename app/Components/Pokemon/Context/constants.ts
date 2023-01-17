@@ -1,4 +1,4 @@
-import { TypeEnum } from '../../../types';
+import { TypeEnum } from '../../../model';
 
 export const TYPE_IMMUNITY_ABILITIES: { [key in string]: TypeEnum[] } = {
   'dry-skin': [TypeEnum.water],

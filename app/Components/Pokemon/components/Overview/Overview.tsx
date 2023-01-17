@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { FlexBox, FlexColumn } from '../../../../style';
-import { PokemonI, TypeEnum } from '../../../../types';
+import { PokemonI, TypeEnum } from '../../../../model';
 import { capitalize } from '../../../../utils';
 import { IconButton } from '../../../IconButton';
 import Type from '../../../Type';
@@ -26,7 +26,7 @@ export const Overview = ({ pokemon }: OverviewProps) => {
           alignItems="center"
           style={{ height: '100%', width: '40%' }}
         >
-          <FlexBox style={{ fontSize: '2em' }}>
+          <FlexBox gap={5} style={{ fontSize: '2em' }}>
             {capitalize(name)}
             {types.map((type: TypeEnum) => (
               <Type id={type} key={type} />
@@ -44,9 +44,13 @@ export const Overview = ({ pokemon }: OverviewProps) => {
             <AbilitySelector />
           </FlexBox>
           Moves:
-          {[0, 1, 2, 3].map((ind) => (
-            <MoveSelector index={ind} />
-          ))}
+          <div
+            style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}
+          >
+            {[0, 1, 2, 3].map((ind) => (
+              <MoveSelector index={ind} />
+            ))}
+          </div>
         </div>
 
         <IconButton

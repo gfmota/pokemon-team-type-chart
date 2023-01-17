@@ -7,7 +7,7 @@ import TypeRelations from '../app/Components/TypeRelations';
 import { useTeamContext } from '../app/Context/hook';
 import { getPokemonList } from '../app/Services';
 import { MainStyled, TeamStyled } from '../app/style';
-import { PokemonI } from '../app/types';
+import { PokemonI } from '../app/model';
 
 interface HomeProps {
   pokemonList: { name: string; id: number }[];

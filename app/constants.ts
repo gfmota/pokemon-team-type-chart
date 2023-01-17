@@ -1,4 +1,4 @@
-import { TypeEnum } from './types';
+import { TypeEnum } from './model';
 
 type TypesBackgroundColorsI = {
   [key in TypeEnum]: {

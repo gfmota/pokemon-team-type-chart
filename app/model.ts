@@ -43,3 +43,8 @@ export interface PokemonI {
     url: string;
   }[];
 }
+
+export interface MoveData {
+  damageClass: 'status' | 'physical' | 'special';
+  type: TypeEnum;
+}

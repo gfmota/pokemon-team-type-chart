@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTeamContext } from '../../Context/hook';
 import { FlexBox } from '../../style';
-import { PokemonI, RelationKeys, TypeEnum } from '../../types';
+import { PokemonI, RelationKeys, TypeEnum } from '../../model';
 import Type from '../Type';
 import { TypeRelation } from './model';
 

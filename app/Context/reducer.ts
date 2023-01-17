@@ -1,4 +1,4 @@
-import { TypeRelationsI } from '../types';
+import { TypeRelationsI } from '../model';
 import { Action, ActionTypes, State } from './model';
 
 export const reducer = (state: State, action: Action): State => {

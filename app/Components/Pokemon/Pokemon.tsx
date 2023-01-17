@@ -2,7 +2,7 @@ import React from 'react';
 import { FiTrash2 } from 'react-icons/fi';
 import { GiMagnifyingGlass } from 'react-icons/gi';
 
-import { PokemonI, TypeEnum } from '../../types';
+import { PokemonI, TypeEnum } from '../../model';
 import {
   StyledIconButton,
   StyledInfoWrapper,

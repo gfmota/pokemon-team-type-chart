@@ -1,4 +1,10 @@
-import { PokemonI, RelationKeys, TypeEnum, TypeRelationsI } from '../types';
+import {
+  MoveData,
+  PokemonI,
+  RelationKeys,
+  TypeEnum,
+  TypeRelationsI,
+} from '../model';
 
 const POKEAPI_ROUTE = 'https://pokeapi.co/api/v2/';
 
@@ -128,4 +134,14 @@ export const getTypeRelations = async (type: TypeEnum) => {
     x05: typesNameMap(halfDamageFrom),
     x0: typesNameMap(noDamageFrom),
   };
+};
+
+export const getMoveData = async (moveUrl?: string) => {
+  if (!moveUrl) return null;
+  const response = await fetch(moveUrl);
+  const json = await response.json();
+  return {
+    damageClass: json.damage_class.name,
+    type: json.type.name,
+  } as MoveData;
 };

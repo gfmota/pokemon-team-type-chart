@@ -1,4 +1,4 @@
-import { PokemonI } from '../../../types';
+import { PokemonI } from '../../../model';
 
 export interface State {
   ability: string;

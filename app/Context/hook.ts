@@ -1,5 +1,5 @@
 import { useCallback, useContext } from 'react';
-import { PokemonI, TypeRelationsI } from '../types';
+import { PokemonI, TypeRelationsI } from '../model';
 import { ActionTypes } from './model';
 import { TeamContext } from './TeamContext';
 

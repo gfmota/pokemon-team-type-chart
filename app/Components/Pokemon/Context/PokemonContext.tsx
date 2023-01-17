@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { PokemonI } from '../../../types';
+import { PokemonI } from '../../../model';
 import { Action, State } from './model';
 import { reducer as PokemonReducer } from './reducer';
 

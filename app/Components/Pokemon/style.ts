@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { TypesBackgroundColors } from '../../constants';
 import { FlexBox, FlexColumn } from '../../style';
-import { TypeEnum } from '../../types';
+import { TypeEnum } from '../../model';
 
 type StyledPokemonWrapperIProps = {
   grayscale: boolean;
