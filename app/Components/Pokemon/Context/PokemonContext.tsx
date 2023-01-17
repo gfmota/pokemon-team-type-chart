@@ -1,11 +1,15 @@
-import React, { useContext, useMemo, useState } from 'react';
-import { useQuery } from 'react-query';
-import { useTeamContext } from '../../../Context/hook';
-import { getPokemonTypesRelations } from '../../../Services';
+import React, { useReducer } from 'react';
 import { PokemonI } from '../../../types';
-import { TYPE_IMMUNITY_ABILITIES } from './constants';
+import { Action, State } from './model';
+import { reducer as PokemonReducer } from './reducer';
 
-const PokemonContext = React.createContext<any>({});
+export const PokemonContext = React.createContext<{
+  state: State;
+  dispatch: React.Dispatch<Action>;
+}>({
+  state: { ability: '' },
+  dispatch: () => null,
+});
 
 interface PokemonContextProviderProps extends React.PropsWithChildren {
   pokemon: PokemonI;
@@ -13,29 +17,23 @@ interface PokemonContextProviderProps extends React.PropsWithChildren {
 
 const PokemonContextProvider = ({
   children,
-  pokemon: { id, types, abilities },
+  pokemon,
 }: PokemonContextProviderProps) => {
-  const { setTypeRelations } = useTeamContext();
-  const [ability, setAbility] = useState<string>(abilities[0]);
-  const immunityByAbility = useMemo(
-    () => TYPE_IMMUNITY_ABILITIES[ability],
-    [ability]
-  );
-  useQuery(
-    [...types, immunityByAbility && `immunity to ${immunityByAbility.join()}`],
-    () => getPokemonTypesRelations(types, { immunityByAbility }),
-    {
-      onSuccess: (data) => setTypeRelations(id, data),
-    }
-  );
+  const [state, dispatch] = useReducer(PokemonReducer, {
+    ability: pokemon.abilities[0],
+    pokemon,
+  });
 
   return (
-    <PokemonContext.Provider value={{ ability, abilities, setAbility }}>
+    <PokemonContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
       {children}
     </PokemonContext.Provider>
   );
 };
-
-export const usePokemonContext = () => useContext(PokemonContext);
 
 export default PokemonContextProvider;

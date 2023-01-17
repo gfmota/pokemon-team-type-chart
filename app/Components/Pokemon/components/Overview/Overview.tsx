@@ -5,7 +5,6 @@ import { PokemonI, TypeEnum } from '../../../../types';
 import { capitalize } from '../../../../utils';
 import { IconButton } from '../../../IconButton';
 import Type from '../../../Type';
-import TypeRelations from '../../../TypeRelations';
 import { AbilitySelector } from '../AbilitySelector/AbilitySelector';
 import { useOverview } from './hook';
 import { StyledOverviewWrapper, StyledCanva } from './style';

@@ -1,15 +1,15 @@
 import { useCallback } from 'react';
 import { useTeamContext } from '../../../../Context/hook';
 import { PokemonI } from '../../../../types';
-import { usePokemonContext } from '../../Context/PokemonContext';
+import { usePokemonContext } from '../../Context/hook';
 
 export const useOverview = (pokemon: PokemonI) => {
   const { closeOverview } = useTeamContext();
-  const { changeAbility } = usePokemonContext();
+  const { setAbility } = usePokemonContext();
 
   const onAbilityChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => changeAbility(e.target.value),
-    [changeAbility]
+    (e: React.ChangeEvent<HTMLSelectElement>) => setAbility(e.target.value),
+    [setAbility]
   );
 
   return { onClose: closeOverview, onAbilityChange };

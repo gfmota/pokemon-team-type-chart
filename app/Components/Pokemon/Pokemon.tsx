@@ -12,9 +12,8 @@ import {
 import Type from '../Type';
 import { usePokemon } from './hook';
 import { capitalize } from '../../utils';
-import { Overview } from './components/Overview/Overview';
 import PokemonContextProvider from './Context/PokemonContext';
-import { AbilitySelector } from './components/AbilitySelector/AbilitySelector';
+import { AbilitySelector, Overview } from './components';
 import { FlexBox } from '../../style';
 
 type PokemonProps = {
