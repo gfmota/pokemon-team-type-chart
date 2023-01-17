@@ -10,7 +10,7 @@ interface MoveSelectorProps {
   index: number;
 }
 
-export const MoveSelector = ({ index }: MoveSelectorProps) => {
+export const MoveSelector: React.FC<MoveSelectorProps> = ({ index }) => {
   const { onMoveChange, selectedMove, moveData, moveList } =
     useMoveSelector(index);
 

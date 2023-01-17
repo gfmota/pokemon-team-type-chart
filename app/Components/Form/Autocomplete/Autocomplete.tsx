@@ -7,7 +7,7 @@ export interface AutocompleteProps {
   pokemonList: { name: string; id: number }[];
 }
 
-export const Autocomplete = ({ pokemonList }: AutocompleteProps) => {
+export const Autocomplete: React.FC<AutocompleteProps> = ({ pokemonList }) => {
   const { autocompleteSuggestions, onClick, showAutocomplete } =
     useAutocomplete(pokemonList);
 

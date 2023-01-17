@@ -14,7 +14,9 @@ export const TeamContext = React.createContext<{
   dispatch: () => null,
 });
 
-const TeamContextProvider = ({ children }: React.PropsWithChildren) => {
+const TeamContextProvider: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
   const [state, dispatch] = useReducer(TeamContextReducer, initialState);
 
   return (

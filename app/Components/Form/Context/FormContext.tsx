@@ -1,14 +1,10 @@
-import React, {
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 
 const FormContext = React.createContext<any>({});
 
-const FormContextProvider = ({ children }: PropsWithChildren) => {
+const FormContextProvider: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [showAutocomplete, setShowAutocomplete] = useState<boolean>(true);
   const inputRef = useRef(null);

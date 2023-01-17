@@ -4,7 +4,10 @@ interface InGameSpriteProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   pokemonName: string;
 }
 
-export const InGameSprite = ({ pokemonName, ...props }: InGameSpriteProps) => (
+export const InGameSprite: React.FC<InGameSpriteProps> = ({
+  pokemonName,
+  ...props
+}) => (
   <img
     src={`https://play.pokemonshowdown.com/sprites/ani/${pokemonName}.gif`}
     alt="in game sprite"

@@ -10,7 +10,7 @@ interface FormProps {
   pokemonList: { name: string; id: number }[];
 }
 
-const Form = ({ pokemonList }: FormProps) => {
+const Form: React.FC<FormProps> = ({ pokemonList }) => {
   const { onChange, onSubmit, inputValue, inputRef, isLoading, error } =
     usePokemonInput();
 

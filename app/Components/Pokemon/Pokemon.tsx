@@ -20,7 +20,7 @@ type PokemonProps = {
   pokemon: PokemonI;
 };
 
-export const Pokemon = ({ pokemon }: PokemonProps) => {
+export const Pokemon: React.FC<PokemonProps> = ({ pokemon }) => {
   const {
     onRemove,
     onHover,

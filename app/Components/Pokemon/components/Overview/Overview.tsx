@@ -14,7 +14,7 @@ interface OverviewProps {
   pokemon: PokemonI;
 }
 
-export const Overview = ({ pokemon }: OverviewProps) => {
+export const Overview: React.FC<OverviewProps> = ({ pokemon }) => {
   const { onClose } = useOverview(pokemon);
   const { name, types } = pokemon;
 

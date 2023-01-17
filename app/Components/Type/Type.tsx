@@ -11,7 +11,12 @@ type TypeProps = {
   size?: number;
 };
 
-export const Type = ({ id, selected, grayscale, size }: TypeProps) => (
+export const Type: React.FC<TypeProps> = ({
+  id,
+  selected,
+  grayscale,
+  size,
+}) => (
   <TypeStyled
     backgroundColor={TypesBackgroundColors[id].main}
     selected={!!selected}

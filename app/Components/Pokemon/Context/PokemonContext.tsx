@@ -15,10 +15,10 @@ interface PokemonContextProviderProps extends React.PropsWithChildren {
   pokemon: PokemonI;
 }
 
-const PokemonContextProvider = ({
+const PokemonContextProvider: React.FC<PokemonContextProviderProps> = ({
   children,
   pokemon,
-}: PokemonContextProviderProps) => {
+}) => {
   const [state, dispatch] = useReducer(PokemonReducer, {
     ability: pokemon.abilities[0],
     moves: ['', '', '', ''],

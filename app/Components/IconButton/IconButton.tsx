@@ -6,7 +6,10 @@ interface IconButtonProps
   IconComponent: React.FC<{ size: number }>;
 }
 
-export const IconButton = ({ IconComponent, ...props }: IconButtonProps) => (
+export const IconButton: React.FC<IconButtonProps> = ({
+  IconComponent,
+  ...props
+}) => (
   <StyledButton {...props}>
     <IconComponent size={12} />
   </StyledButton>
