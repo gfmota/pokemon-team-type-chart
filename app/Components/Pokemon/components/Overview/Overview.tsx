@@ -10,7 +10,7 @@ import { useOverview } from './hook';
 import { StyledOverviewWrapper, StyledCanva } from './style';
 import { MoveSelector } from '../MoveSelector/MoveSelector';
 
-interface OverviewProps {
+export interface OverviewProps {
   pokemon: PokemonI;
 }
 

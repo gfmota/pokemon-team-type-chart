@@ -16,7 +16,7 @@ import PokemonContextProvider from './Context/PokemonContext';
 import { AbilitySelector, Overview, InGameSprite } from './components';
 import { FlexBox } from '../../style';
 
-type PokemonProps = {
+export interface PokemonProps {
   pokemon: PokemonI;
 };
 
