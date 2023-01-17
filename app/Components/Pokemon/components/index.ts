@@ -1,2 +1,2 @@
 export { AbilitySelector } from './AbilitySelector/AbilitySelector';
-export { Overview } from './Overview/Overview';
+export { DynamicOverview as Overview } from './Overview/dynamic';
