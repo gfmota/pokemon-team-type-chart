@@ -3,7 +3,7 @@ import { AiFillQuestionCircle } from 'react-icons/ai';
 import { capitalize } from '../../../../utils';
 import { useMoveSelector } from './hook';
 import { StyledSelect } from '../../style';
-import { FlexBox } from '../../../../style';
+import { FlexBox, FlexColumn } from '../../../../style';
 import Type from '../../../Type';
 
 interface MoveSelectorProps {
@@ -16,11 +16,18 @@ export const MoveSelector: React.FC<MoveSelectorProps> = ({ index }) => {
 
   return (
     <FlexBox alignItems="center" gap={5}>
-      {selectedMove && moveData ? (
-        <Type id={moveData.type} size={32} />
-      ) : (
-        <AiFillQuestionCircle size={32} />
-      )}
+      <FlexColumn>
+        {selectedMove && moveData ? (
+          <Type id={moveData.type} size={32} />
+        ) : (
+          <AiFillQuestionCircle size={32} />
+        )}
+        <img
+          src={`https://play.pokemonshowdown.com/sprites/categories/${
+            moveData?.damageClass && capitalize(moveData?.damageClass)
+          }.png`}
+        />
+      </FlexColumn>
       <StyledSelect onChange={onMoveChange} value={selectedMove}>
         <option selected={!selectedMove}></option>
         {moveList.map((move: string) => (
