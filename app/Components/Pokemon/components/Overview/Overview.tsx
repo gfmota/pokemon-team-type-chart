@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { FlexBox, FlexColumn } from '../../../../style';
-import { PokemonI, TypeEnum } from '../../../../model';
+import { PokemonI, RelationKeys, TypeEnum } from '../../../../model';
 import { capitalize } from '../../../../utils';
 import { IconButton } from '../../../IconButton';
 import Type from '../../../Type';
@@ -9,6 +9,7 @@ import { AbilitySelector, InGameSprite } from '../';
 import { useOverview } from './hook';
 import { StyledOverviewWrapper, StyledCanva } from './style';
 import { MoveSelector } from '../MoveSelector/MoveSelector';
+import { TypeChart } from '../../../TypeRelations';
 
 export interface OverviewProps {
   pokemon: PokemonI;
@@ -16,7 +17,7 @@ export interface OverviewProps {
 
 export const Overview: React.FC<OverviewProps> = ({ pokemon }) => {
   const { onClose } = useOverview(pokemon);
-  const { name, types } = pokemon;
+  const { name, types, typeRelations } = pokemon;
 
   return (
     <>
@@ -51,6 +52,28 @@ export const Overview: React.FC<OverviewProps> = ({ pokemon }) => {
               <MoveSelector index={ind} />
             ))}
           </div>
+          Takes damage from:
+          <FlexBox>
+            <TypeChart
+              typeRelations={{
+                [RelationKeys.X4]: typeRelations[RelationKeys.X4].map(
+                  (type) => ({ type })
+                ),
+                [RelationKeys.X2]: typeRelations[RelationKeys.X2].map(
+                  (type) => ({ type })
+                ),
+                [RelationKeys.X0]: typeRelations[RelationKeys.X0].map(
+                  (type) => ({ type })
+                ),
+                [RelationKeys.X05]: typeRelations[RelationKeys.X05].map(
+                  (type) => ({ type })
+                ),
+                [RelationKeys.X025]: typeRelations[RelationKeys.X025].map(
+                  (type) => ({ type })
+                ),
+              }}
+            />
+          </FlexBox>
         </div>
 
         <IconButton

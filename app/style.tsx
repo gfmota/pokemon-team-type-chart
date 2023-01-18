@@ -56,24 +56,6 @@ export const MainStyled = styled.div`
   }
 `;
 
-export const TypeRelationsStyled = styled(FlexBox)`
-  justify-content: space-evenly;
-  margin: 0 25px 2.5em 25px;
-  height: 100%;
-
-  @media (max-width: ${MOBILE_MAX_WIDTH}px) {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    margin: 0 0 2.1em 0;
-    width: 100%;
-    background-color: #807d7b;
-    border-top: black 3px solid;
-    max-height: 50vh;
-    overflow: auto;
-  }
-`;
-
 export const AutocompleteStyled = styled.ul`
   border: 1px solid #999;
   border-top-width: 0;

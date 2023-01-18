@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTeamContext } from '../../Context/hook';
-import { FlexBox } from '../../style';
 import { PokemonI, RelationKeys, TypeEnum } from '../../model';
-import Type from '../Type';
 import { TypeRelation } from './model';
 
 export const useTypeRelations = () => {
@@ -15,12 +13,12 @@ export const useTypeRelations = () => {
       return;
     }
 
-    const relations = {
-      x4: [] as TypeRelation[],
-      x2: [] as TypeRelation[],
-      x05: [] as TypeRelation[],
-      x025: [] as TypeRelation[],
-      x0: [] as TypeRelation[],
+    const relations: Record<RelationKeys, TypeRelation[]> = {
+      [RelationKeys.X4]: [],
+      [RelationKeys.X2]: [],
+      [RelationKeys.X05]: [],
+      [RelationKeys.X025]: [],
+      [RelationKeys.X0]: [],
     };
 
     team.forEach((pokemon: PokemonI) =>
@@ -32,7 +30,7 @@ export const useTypeRelations = () => {
             (relation: TypeRelation) => relation.type === type
           );
           if (relation) {
-            relation.counter += 1;
+            if (relation.counter) relation.counter += 1;
             if (pokemon.id === pokemonOnFocus) relation.onFocus = true;
             return;
           }
@@ -40,6 +38,7 @@ export const useTypeRelations = () => {
             type,
             counter: 1,
             onFocus: pokemon.id === pokemonOnFocus,
+            grayscale: !(pokemon.id === pokemonOnFocus) && !!pokemonOnFocus,
           });
         });
       })
@@ -48,31 +47,7 @@ export const useTypeRelations = () => {
     setTypeRelations(relations);
   }, [team, pokemonOnFocus]);
 
-  const renderTypesList = (types: any[]) =>
-    types.map(({ type, counter, onFocus }: TypeRelation) => (
-      <FlexBox key={type} alignItems="flex-end">
-        <Type
-          id={type}
-          selected={onFocus}
-          grayscale={!onFocus && !!pokemonOnFocus}
-        />
-        <div
-          style={{
-            borderRadius: '100%',
-            border: 'black 2px solid',
-            padding: '0 5px',
-            fontWeight: 'bold',
-            backgroundColor: 'white',
-            color: 'black',
-          }}
-        >
-          {counter}
-        </div>
-      </FlexBox>
-    ));
-
   return {
     typeRelations,
-    renderTypesList,
   };
 };

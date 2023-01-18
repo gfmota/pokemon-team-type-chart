@@ -1,6 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { MOBILE_MAX_WIDTH } from '../../../../constants';
 import { FlexBox } from '../../../../style';
+
+const Increase = keyframes`
+  from {
+    transform: scale(0);
+  } to {
+    transform: scale(1);
+  }
+`;
 
 export const StyledOverviewWrapper = styled(FlexBox)`
   position: fixed;
@@ -26,6 +34,16 @@ export const StyledOverviewWrapper = styled(FlexBox)`
     flex-direction: column;
     align-items: stretch;
   }
+
+  animation: ${Increase} 0.6s;
+`;
+
+const FadeIn = keyframes`
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
 `;
 
 export const StyledCanva = styled.div`
@@ -38,4 +56,6 @@ export const StyledCanva = styled.div`
   width: 100vw;
 
   background-color: rgba(0, 0, 0, 0.5);
+
+  animation: ${FadeIn} 0.6s;
 `;
