@@ -16,8 +16,9 @@ export interface OverviewProps {
 }
 
 export const Overview: React.FC<OverviewProps> = ({ pokemon }) => {
-  const { onClose } = useOverview(pokemon);
-  const { name, types, typeRelations } = pokemon;
+  const { onClose, pokemonTypeRelations, movesTypeRelations } =
+    useOverview(pokemon);
+  const { name, types } = pokemon;
 
   return (
     <>
@@ -52,27 +53,19 @@ export const Overview: React.FC<OverviewProps> = ({ pokemon }) => {
               <MoveSelector index={ind} />
             ))}
           </div>
-          Takes damage from:
-          <FlexBox>
-            <TypeChart
-              typeRelations={{
-                [RelationKeys.X4]: typeRelations[RelationKeys.X4].map(
-                  (type) => ({ type })
-                ),
-                [RelationKeys.X2]: typeRelations[RelationKeys.X2].map(
-                  (type) => ({ type })
-                ),
-                [RelationKeys.X0]: typeRelations[RelationKeys.X0].map(
-                  (type) => ({ type })
-                ),
-                [RelationKeys.X05]: typeRelations[RelationKeys.X05].map(
-                  (type) => ({ type })
-                ),
-                [RelationKeys.X025]: typeRelations[RelationKeys.X025].map(
-                  (type) => ({ type })
-                ),
-              }}
-            />
+          <FlexBox justifyContent="space-around">
+            <div>
+              Takes damage from:
+              <FlexBox>
+                <TypeChart typeRelations={pokemonTypeRelations} />
+              </FlexBox>
+            </div>
+            <div>
+              Deals damage to:
+              <FlexBox>
+                <TypeChart typeRelations={movesTypeRelations} />
+              </FlexBox>
+            </div>
           </FlexBox>
         </div>
 

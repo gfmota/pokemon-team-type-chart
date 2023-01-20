@@ -1,8 +1,8 @@
-import { PokemonI } from '../../../model';
+import { MoveData, PokemonI } from '../../../model';
 
 export interface State {
   ability: string;
-  moves: [string, string, string, string];
+  moves: [MoveData | null, MoveData | null, MoveData | null, MoveData | null];
   pokemon?: PokemonI;
 }
 
@@ -15,6 +15,11 @@ export interface Action {
   type: ActionTypes;
   data: {
     ability?: string;
-    moves?: [string, string, string, string];
+    moves?: [
+      MoveData | null,
+      MoveData | null,
+      MoveData | null,
+      MoveData | null
+    ];
   };
 }

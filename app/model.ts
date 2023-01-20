@@ -45,6 +45,8 @@ export interface PokemonI {
 }
 
 export interface MoveData {
+  name: string;
   damageClass: 'status' | 'physical' | 'special';
   type: TypeEnum;
+  typeRelation: TypeRelationsI;
 }

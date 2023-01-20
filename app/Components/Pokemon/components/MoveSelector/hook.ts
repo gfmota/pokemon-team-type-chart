@@ -1,17 +1,27 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getMoveData } from '../../../../Services';
 import { usePokemonContext } from '../../Context/hook';
 
 export const useMoveSelector = (index: number) => {
-  const { moves, pokemon, setMove } = usePokemonContext();
-  const selectedMove = moves[index];
-  const { data: moveData } = useQuery(selectedMove, () =>
-    getMoveData(pokemon?.moves.find(({ name }) => name === selectedMove)?.url)
+  const { pokemon, setMove, moves } = usePokemonContext();
+  const [selectedMove, setSelectedMove] = useState<string>(
+    moves[index]?.name || ''
+  );
+  const { data: moveData } = useQuery(
+    selectedMove,
+    () =>
+      getMoveData(
+        pokemon?.moves.find(({ name }) => name === selectedMove)?.url
+      ),
+    {
+      onSuccess: (data) => data && setMove(index, data),
+    }
   );
 
   const onMoveChange = useCallback(
-    (e: React.ChangeEvent<HTMLSelectElement>) => setMove(index, e.target.value),
+    (e: React.ChangeEvent<HTMLSelectElement>) =>
+      setSelectedMove(e.target.value),
     [setMove]
   );
 

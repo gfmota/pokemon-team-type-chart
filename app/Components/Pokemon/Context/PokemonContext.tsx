@@ -7,7 +7,7 @@ export const PokemonContext = React.createContext<{
   state: State;
   dispatch: React.Dispatch<Action>;
 }>({
-  state: { ability: '', moves: ['', '', '', ''] },
+  state: { ability: '', moves: [null, null, null, null] },
   dispatch: () => null,
 });
 
@@ -21,7 +21,7 @@ const PokemonContextProvider: React.FC<PokemonContextProviderProps> = ({
 }) => {
   const [state, dispatch] = useReducer(PokemonReducer, {
     ability: pokemon.abilities[0],
-    moves: ['', '', '', ''],
+    moves: [null, null, null, null],
     pokemon,
   });
 

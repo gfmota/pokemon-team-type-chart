@@ -1,6 +1,7 @@
 import { useCallback, useContext, useMemo } from 'react';
 import { useQuery } from 'react-query';
 import { useTeamContext } from '../../../Context/hook';
+import { MoveData } from '../../../model';
 import { getPokemonTypesRelations } from '../../../Services';
 import { TYPE_IMMUNITY_ABILITIES } from './constants';
 import { ActionTypes } from './model';
@@ -39,7 +40,7 @@ export const usePokemonContext = () => {
   );
 
   const setMove = useCallback(
-    (index: number, moveName: string) => {
+    (index: number, moveName: MoveData) => {
       const newMoves = state.moves;
       newMoves[index] = moveName;
       dispatch({

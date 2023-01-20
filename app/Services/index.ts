@@ -51,6 +51,11 @@ export const getPokemonList = async (): Promise<
   }));
 };
 
+enum RelationType {
+  FROM,
+  TO,
+}
+
 export const getPokemonTypesRelations = async (
   types: TypeEnum[],
   options?: { immunityByAbility?: TypeEnum[] }
@@ -58,11 +63,13 @@ export const getPokemonTypesRelations = async (
   const typeRelations: TypeRelationsI = {
     x4: [],
     x025: [],
-    ...(await getTypeRelations(types[0])),
+    ...(await getTypeRelations(types[0]))[RelationType.FROM],
   };
 
   if (types[1]) {
-    const secondTypeRelations = await getTypeRelations(types[1]);
+    const secondTypeRelations = (await getTypeRelations(types[1]))[
+      RelationType.FROM
+    ];
     secondTypeRelations.x2.forEach((type) => {
       if (typeRelations.x0.includes(type)) return;
       if (typeRelations.x2.includes(type)) {
@@ -124,15 +131,25 @@ export const getTypeRelations = async (type: TypeEnum) => {
       double_damage_from: doubleDamageFrom,
       half_damage_from: halfDamageFrom,
       no_damage_from: noDamageFrom,
+      double_damage_to: doubleDamageTo,
+      half_damage_to: halfDamageTo,
+      no_damage_to: noDamageTo,
     },
   } = await response.json();
   const typesNameMap = (types: { name: TypeEnum }[]) =>
     types.map(({ name }) => name);
 
   return {
-    x2: typesNameMap(doubleDamageFrom),
-    x05: typesNameMap(halfDamageFrom),
-    x0: typesNameMap(noDamageFrom),
+    [RelationType.FROM]: {
+      x2: typesNameMap(doubleDamageFrom),
+      x05: typesNameMap(halfDamageFrom),
+      x0: typesNameMap(noDamageFrom),
+    },
+    [RelationType.TO]: {
+      x2: typesNameMap(doubleDamageTo),
+      x05: typesNameMap(halfDamageTo),
+      x0: typesNameMap(noDamageTo),
+    },
   };
 };
 
@@ -140,8 +157,11 @@ export const getMoveData = async (moveUrl?: string) => {
   if (!moveUrl) return null;
   const response = await fetch(moveUrl);
   const json = await response.json();
+  const type = json.type.name;
   return {
+    name: json.name,
     damageClass: json.damage_class.name,
-    type: json.type.name,
+    type,
+    typeRelation: (await getTypeRelations(type))[RelationType.TO],
   } as MoveData;
 };
