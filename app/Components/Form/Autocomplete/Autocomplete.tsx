@@ -1,7 +1,7 @@
 import React from 'react';
-import { AutocompleteStyled, FlexBox } from '../../../style';
+import { FlexBox } from '../../../style';
 import { useAutocomplete } from './hooks';
-import { StyledPokemonIcon } from './style';
+import { StyledPokemonIcon, AutocompleteStyled } from './style';
 
 export interface AutocompleteProps {
   pokemonList: { name: string; id: number }[];
