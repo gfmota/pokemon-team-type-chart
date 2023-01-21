@@ -10,7 +10,8 @@ interface FlexBoxProps {
     | 'center'
     | 'space-between'
     | 'space-around'
-    | 'space-evenly';
+    | 'space-evenly'
+    | 'stretch';
   alignItems?: 'stretch' | 'flex-start' | 'flex-end' | 'center' | 'baseline';
   gap?: number;
 }

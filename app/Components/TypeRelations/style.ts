@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { MOBILE_MAX_WIDTH } from '../../constants';
-import { FlexBox } from '../../style';
 
-export const StyledTypeRelationsWrapper = styled(FlexBox)`
-  justify-content: space-evenly;
+export const StyledTypeRelationsWrapper = styled.div`
   margin: 0 25px 2.5em 25px;
   height: 100%;
 

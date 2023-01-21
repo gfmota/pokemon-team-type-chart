@@ -51,8 +51,6 @@ export const usePokemonContext = () => {
     [dispatch]
   );
 
-  console.log(state.moves);
-
   return {
     ...state,
     setAbility,

@@ -16,9 +16,9 @@ export const StyledOverviewWrapper = styled(FlexBox)`
   left: 0;
   z-index: 1;
 
-  height: calc(100vh - 14em);
-  width: calc(100vw - 14em);
-  margin: 5em;
+  height: calc(100vh - 10em);
+  width: calc(100vw - 10em);
+  margin: 3em;
   padding: 2em;
   border-radius: 2em;
 

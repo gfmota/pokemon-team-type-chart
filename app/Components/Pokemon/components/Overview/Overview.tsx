@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { FlexBox, FlexColumn } from '../../../../style';
-import { PokemonI, RelationKeys, TypeEnum } from '../../../../model';
+import { PokemonI, TypeEnum } from '../../../../model';
 import { capitalize } from '../../../../utils';
 import { IconButton } from '../../../IconButton';
 import Type from '../../../Type';
@@ -56,15 +56,11 @@ export const Overview: React.FC<OverviewProps> = ({ pokemon }) => {
           <FlexBox justifyContent="space-around">
             <div>
               Takes damage from:
-              <FlexBox>
                 <TypeChart typeRelations={pokemonTypeRelations} />
-              </FlexBox>
             </div>
             <div>
               Deals damage to:
-              <FlexBox>
-                <TypeChart typeRelations={movesTypeRelations} />
-              </FlexBox>
+                <TypeChart typeRelations={movesTypeRelations} simpleTypes />
             </div>
           </FlexBox>
         </div>
