@@ -10,7 +10,6 @@ const POKEAPI_ROUTE = 'https://pokeapi.co/api/v2/';
 
 const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
   const types = json.types.map((typeObj: any) => typeObj.type.name);
-  const sprite = json.sprites.front_default;
   const abilities = json.abilities.map((ability: any) => ability.ability.name);
   const moves = json.moves.map(({ move }: any) => move);
   const typeRelations = {
@@ -25,7 +24,6 @@ const createPokemonFromJSON = async (json: any): Promise<PokemonI> => {
     name: json.name,
     id: json.id,
     types,
-    sprite,
     typeRelations,
     abilities,
     moves,

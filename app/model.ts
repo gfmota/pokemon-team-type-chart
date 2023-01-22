@@ -35,7 +35,6 @@ export interface PokemonI {
   name: string;
   id: number;
   types: TypeEnum[];
-  sprite: string;
   typeRelations: TypeRelationsI;
   abilities: string[];
   moves: {
