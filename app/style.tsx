@@ -36,12 +36,6 @@ export const FlexColumn = styled.div<Omit<FlexBoxProps, 'direction'>>`
   ${({ gap }) => gap && `gap: ${gap}px`};
 `;
 
-export const TeamStyled = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 200px);
-`;
-
 export const MainStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
