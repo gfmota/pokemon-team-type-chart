@@ -7,14 +7,17 @@ import { StyledTypeCounter } from './style';
 
 interface TypeChartProps {
   typeRelations: TypeRelations;
-  simpleTypes?: boolean
+  simpleTypes?: boolean;
 }
 
-export const TypeChart: React.FC<TypeChartProps> = ({ typeRelations, simpleTypes }) => {
+export const TypeChart: React.FC<TypeChartProps> = ({
+  typeRelations,
+  simpleTypes,
+}) => {
   const relations = simpleTypes ? UNIQUE_TYPE_RELATION : RELATIONS;
 
   return (
-    <FlexBox justifyContent='space-around' >
+    <FlexBox justifyContent="space-around">
       {relations.map(({ id, src, alt }) => (
         <div key={`${simpleTypes}:${id}`}>
           <Image src={src} width={64} height={64} alt={alt} />

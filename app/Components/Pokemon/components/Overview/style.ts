@@ -32,16 +32,15 @@ export const StyledOverviewWrapper = styled(FlexBox)`
 
   @media (max-width: ${MOBILE_MAX_WIDTH}px) {
     flex-direction: column;
-  align-items: center;
+    align-items: center;
 
+    height: calc(100vh - 2em);
+    width: calc(100vw - 2em);
+    margin: 0;
+    border-radius: 0;
+    padding: 1em;
 
-  height: calc(100vh - 2em);
-  width: calc(100vw - 2em);
-  margin: 0;
-  border-radius: 0;
-  padding: 1em;
-
-  overflow: auto;
+    overflow: auto;
   }
 
   animation: ${Increase} 0.6s;
@@ -74,11 +73,11 @@ export const StyledTypeChartsWrapper = styled(FlexBox)`
   @media (max-width: ${TABLET_MAX_WIDTH}px) {
     flex-direction: column;
   }
-`
+`;
 
 export const StyledTitleWrapper = styled(FlexBox)`
   font-size: 2em;
   @media (max-width: ${TABLET_MAX_WIDTH}px) {
     flex-direction: column;
   }
-`
+`;

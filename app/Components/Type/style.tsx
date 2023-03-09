@@ -18,8 +18,9 @@ export const TypeStyled = styled(FlexBox)<TypeStyledIProps>`
   margin: 2px 0;
 
   transition: 0.7s;
-  ${({ grayscale }) =>
+  ${({ grayscale, selected }) =>
     grayscale &&
+    !selected &&
     `
     filter: grayscale(1);
   `}

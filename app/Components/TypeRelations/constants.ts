@@ -1,4 +1,4 @@
-import { RelationKeys } from "../../model";
+import { RelationKeys } from '../../model';
 
 export const RELATIONS = [
   {
