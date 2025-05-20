@@ -4,7 +4,7 @@ export const TYPE_IMMUNITY_ABILITIES: { [key in string]: TypeEnum[] } = {
   'dry-skin': [TypeEnum.water],
   'flash-fire': [TypeEnum.fire],
   levitate: [TypeEnum.ground],
-  lightningrod: [TypeEnum.electric],
+  'lightning-rod': [TypeEnum.electric],
   'motor-drive': [TypeEnum.electric],
   'sap-sipper': [TypeEnum.grass],
   'storm-drain': [TypeEnum.water],
